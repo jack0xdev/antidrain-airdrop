@@ -9,16 +9,35 @@
 //|  attribution required, NON-COMMERCIAL use only, share-alike.     |
 //|                                                                  |
 //|  Everything runs on CLOSED candles, so nothing repaints.         |
+//|                                                                  |
+//|  Default strategy - OB SWEEP:                                    |
+//|   bearish OB: candle wick goes ABOVE the OB top and the candle   |
+//|               closes back below it -> SELL, SL = that candle's high
+//|   bullish OB: candle wick goes BELOW the OB bottom and the candle|
+//|               closes back above it -> BUY,  SL = that candle's low
+//|   SL hit -> the next sweep of the same OB is taken again,        |
+//|   max 3 entries per OB.                                          |
 //+------------------------------------------------------------------+
 #property copyright "OB detection logic (c) LuxAlgo - CC BY-NC-SA 4.0 (non-commercial)"
-#property version   "1.00"
-#property description "Order Block bot: LuxAlgo ICT Concepts OB detection ported to MQL5 (closed candles only)."
-#property description "Measures the detection lag of every OB. License: CC BY-NC-SA 4.0 - not for sale."
+#property version   "1.10"
+#property description "OB sweep bot: LuxAlgo ICT Concepts OB detection ported to MQL5 (closed candles only)."
+#property description "Entry on OB sweep, SL at the sweep candle high/low, up to 3 entries per OB. CC BY-NC-SA 4.0 - not for sale."
 
 #include <Trade\Trade.mqh>
 
+enum ENUM_BOT_TF
+  {
+   TF_M1  = PERIOD_M1,  // 1 minute
+   TF_M5  = PERIOD_M5,  // 5 minutes
+   TF_M10 = PERIOD_M10, // 10 minutes
+   TF_M15 = PERIOD_M15, // 15 minutes
+   TF_M30 = PERIOD_M30, // 30 minutes
+   TF_H1  = PERIOD_H1   // 1 hour
+  };
+
 enum ENUM_ENTRY_MODE
   {
+   ENTRY_SWEEP   = 3, // OB sweep: wick through the OB, close back -> market entry
    ENTRY_LIMIT   = 0, // Limit order at the OB as soon as it is detected
    ENTRY_CONFIRM = 1, // Market order after a candle rejects the OB
    ENTRY_OFF     = 2  // No trades (detect, draw, log only)
@@ -32,27 +51,30 @@ enum ENUM_ENTRY_LEVEL
 
 //--- inputs
 input group "=== Order block detection (LuxAlgo logic) ==="
-input ENUM_TIMEFRAMES InpTF       = PERIOD_CURRENT; // Timeframe
+input ENUM_BOT_TF InpTF           = TF_M5;          // Timeframe (1m / 5m / 10m / 15m / 30m / 1h)
 input int      InpSwingLength     = 10;             // Swing Lookback (LuxAlgo default 10)
 input bool     InpUseBody         = true;           // Use Candle Body (LuxAlgo default true)
 input int      InpWarmupBars      = 1500;           // History bars processed at start
 
 input group "=== Entry ==="
-input ENUM_ENTRY_MODE  InpEntryMode  = ENTRY_LIMIT;  // Entry mode
-input ENUM_ENTRY_LEVEL InpEntryLevel = LEVEL_EDGE;   // Limit entry level
+input ENUM_ENTRY_MODE  InpEntryMode  = ENTRY_SWEEP;  // Entry mode
+input int      InpMaxEntries      = 3;              // Sweep: max entries per OB (re-entry after SL)
+input bool     InpStopOnBreaker   = true;           // Sweep: stop when a candle body closes through the OB
+input bool     InpReentryAfterWin = false;          // Sweep: keep trading the OB after a winning trade
+input ENUM_ENTRY_LEVEL InpEntryLevel = LEVEL_EDGE;   // Limit mode: entry level
 input bool     InpTradeBull       = true;           // Trade bullish OBs (buy)
 input bool     InpTradeBear       = true;           // Trade bearish OBs (sell)
 input int      InpTradeLastN      = 1;              // Trade only the newest N OBs per side (LuxAlgo shows 1)
-input int      InpExpiryBars      = 50;             // Give up if no entry N bars after detection (0 = never)
+input int      InpExpiryBars      = 0;              // No new entry N bars after detection (0 = never)
 
 input group "=== Risk ==="
 input double   InpLots            = 0.01;           // Fixed lots
 input double   InpRiskPercent     = 0.0;            // Risk % of balance per trade (0 = fixed lots)
-input double   InpRR              = 2.0;            // Take profit = RR x risk
-input double   InpSLBufferATR     = 0.10;           // SL beyond the OB by ATR x
-input double   InpMinRiskATR      = 0.50;           // Minimum SL distance (ATR x)
-input double   InpMaxRiskATR      = 3.00;           // Skip OB if SL distance > ATR x (0 = off)
-input double   InpBreakEvenR      = 1.0;            // Move SL to entry at N x risk (0 = off)
+input double   InpRR              = 2.0;            // Take profit = RR x risk (0 = no TP)
+input double   InpSLBufferATR     = 0.0;            // Extra SL buffer beyond sweep high/low or OB (ATR x)
+input double   InpMinRiskATR      = 0.0;            // Minimum SL distance (ATR x, 0 = broker minimum)
+input double   InpMaxRiskATR      = 0.0;            // Skip entry if SL distance > ATR x (0 = off)
+input double   InpBreakEvenR      = 0.0;            // Move SL to entry at N x risk (0 = off)
 input int      InpMaxPositions    = 1;              // Max open positions
 input double   InpMaxSpread       = 0.50;           // Max spread for market orders (price)
 input int      InpSlippagePts     = 50;             // Max slippage (points)
@@ -87,6 +109,9 @@ struct OrderBlock
    bool     mitigated;    // price came back into the OB after detection
    bool     used;         // traded or given up - never trade again
    ulong    ticket;       // pending order ticket
+   int      entries;      // sweep: trades taken on this OB
+   bool     won;          // sweep: a trade on this OB closed in profit
+   ulong    posId;        // sweep: open position of this OB (0 = none)
   };
 
 struct Swing
@@ -117,7 +142,7 @@ int             g_swingLags[];          // swing -> detection, in candles
 //+------------------------------------------------------------------+
 int OnInit()
   {
-   g_tf = (InpTF == PERIOD_CURRENT) ? (ENUM_TIMEFRAMES)_Period : InpTF;
+   g_tf = (ENUM_TIMEFRAMES)InpTF;
    g_trade.SetExpertMagicNumber(InpMagic);
    g_trade.SetDeviationInPoints(InpSlippagePts);
    g_trade.SetTypeFillingBySymbol(_Symbol);
@@ -202,7 +227,10 @@ bool Warmup()
 
    Print(StringFormat("Warm-up: %d candles, %d OB detections, %d bullish / %d bearish OBs alive",
                       start, g_detections, ArraySize(g_bull), ArraySize(g_bear)));
-   ManageEntries();
+   if(InpEntryMode == ENTRY_SWEEP)
+      RestoreFromHistory();   // entry count survives a restart / settings change
+   else
+      ManageEntries();        // sweeps are only taken on new live candles
    DrawOBs();
    UpdatePanel();
    return true;
@@ -345,6 +373,9 @@ void AddOB(OrderBlock &arr[], bool bull, double top, double btm, int locShift, i
    ob.mitigated  = false;
    ob.used       = false;
    ob.ticket     = 0;
+   ob.entries    = 0;
+   ob.won        = false;
+   ob.posId      = 0;
 
    int n = ArraySize(arr);
    ArrayResize(arr, n + 1);
@@ -402,6 +433,11 @@ void ManageSide(OrderBlock &arr[], bool bull)
    for(int i = 0; i < ArraySize(arr); i++)
      {
       bool expired = (InpExpiryBars > 0 && g_idx - arr[i].detectIdx > InpExpiryBars);
+      if(InpEntryMode == ENTRY_SWEEP)
+        {
+         SweepEntry(arr[i], bull, allowed && !expired && i < InpTradeLastN);
+         continue;
+        }
       bool dead    = arr[i].breaker || expired || !allowed || i >= InpTradeLastN || InpEntryMode != ENTRY_LIMIT;
 
       //--- existing pending order
@@ -446,6 +482,190 @@ void ManageSide(OrderBlock &arr[], bool bull)
   }
 
 //+------------------------------------------------------------------+
+//| OB sweep: runs once per closed candle (shift 1)                  |
+//+------------------------------------------------------------------+
+void SweepEntry(OrderBlock &ob, bool bull, bool eligible)
+  {
+   //--- previous trade of this OB: still open -> wait; closed -> win or loss?
+   if(ob.posId > 0)
+     {
+      if(PositionOpenById(ob.posId))
+         return;
+      double profit = ClosedProfit(ob.posId);
+      Print(StringFormat("%s OB trade %d/%d closed: %s %.2f", bull ? "Bullish" : "Bearish",
+                         ob.entries, InpMaxEntries, profit > 0 ? "profit" : "loss", profit));
+      if(profit > 0 && !InpReentryAfterWin)
+         ob.won = true;
+      ob.posId = 0;
+     }
+
+   if(!eligible || ob.won || ob.entries >= InpMaxEntries)
+      return;
+   if(ob.breaker && InpStopOnBreaker)
+      return;
+   if(ob.detectIdx >= g_idx)                 // the sweep must come after the OB exists
+      return;
+   if(!Swept(ob, bull))
+      return;
+
+   string what = StringFormat("%s OB sweep %s-%s", bull ? "Bullish" : "Bearish",
+                              DoubleToString(ob.btm, _Digits), DoubleToString(ob.top, _Digits));
+   if(!TradingWindowOk() || CountPositions() >= InpMaxPositions)
+     {
+      Print(what, " - skipped (session / news / max positions)");
+      return;
+     }
+   OpenSweep(ob, bull, what);
+  }
+
+//+------------------------------------------------------------------+
+//| Wick through the OB edge, close back on the OB side              |
+//+------------------------------------------------------------------+
+bool Swept(const OrderBlock &ob, bool bull)
+  {
+   if(bull)
+      return (L(1) < ob.btm && C(1) > ob.btm);
+   return (H(1) > ob.top && C(1) < ob.top);
+  }
+
+//+------------------------------------------------------------------+
+//| Market entry, SL at the sweep candle's low (buy) / high (sell)   |
+//+------------------------------------------------------------------+
+void OpenSweep(OrderBlock &ob, bool bull, string what)
+  {
+   double ask    = SymbolInfoDouble(_Symbol, SYMBOL_ASK);
+   double bid    = SymbolInfoDouble(_Symbol, SYMBOL_BID);
+   double spread = ask - bid;
+   if(spread > InpMaxSpread)
+     {
+      Print(what, " - skipped, spread ", DoubleToString(spread, _Digits));
+      return;
+     }
+   double atr    = Atr(14);
+   double buffer = InpSLBufferATR * atr;
+   double minD   = MathMax(MinStopDist() + spread, InpMinRiskATR * atr);
+   double entry, sl, risk;
+   if(bull)
+     {
+      entry = ask;
+      sl    = L(1) - buffer;                  // buy SL triggers on bid, candle lows are bid
+      risk  = MathMax(entry - sl, minD);
+      sl    = entry - risk;
+     }
+   else
+     {
+      entry = bid;
+      sl    = H(1) + spread + buffer;         // sell SL triggers on ask = bid + spread
+      risk  = MathMax(sl - entry, minD);
+      sl    = entry + risk;
+     }
+   if(InpMaxRiskATR > 0 && atr > 0 && risk > InpMaxRiskATR * atr)
+     {
+      Print(what, StringFormat(" - skipped, SL distance %.2f > %.1f x ATR", risk, InpMaxRiskATR));
+      return;
+     }
+   double tp = 0;
+   if(InpRR > 0)
+      tp = bull ? entry + InpRR * risk : entry - InpRR * risk;
+
+   double lots    = CalcLots(risk);
+   string comment = StringFormat("OBsw %s #%d", ObTag(ob, bull), ob.entries + 1);
+   bool ok = bull ? g_trade.Buy(lots, _Symbol, 0, NP(sl), tp > 0 ? NP(tp) : 0, comment)
+                  : g_trade.Sell(lots, _Symbol, 0, NP(sl), tp > 0 ? NP(tp) : 0, comment);
+   uint rc = g_trade.ResultRetcode();
+   if(!ok || g_trade.ResultOrder() == 0 ||
+      (rc != TRADE_RETCODE_DONE && rc != TRADE_RETCODE_DONE_PARTIAL && rc != TRADE_RETCODE_PLACED))
+     {
+      PrintTradeError(bull ? "Sweep buy" : "Sweep sell");
+      return;
+     }
+   ob.entries++;
+   ob.posId = g_trade.ResultOrder();         // position id = ticket of the opening order
+   string msg = StringFormat("%s %s -> %s entry %d/%d  SL %s  TP %s", _Symbol, what, bull ? "BUY" : "SELL",
+                             ob.entries, InpMaxEntries, DoubleToString(NP(sl), _Digits),
+                             tp > 0 ? DoubleToString(NP(tp), _Digits) : "none");
+   Print(msg);
+   if(InpAlert)
+      Alert(msg);
+  }
+
+//+------------------------------------------------------------------+
+//| Rebuild entry counters from our deals (comment "OBsw <tag> #n")  |
+//+------------------------------------------------------------------+
+void RestoreFromHistory()
+  {
+   datetime now = TimeCurrent();
+   if(!HistorySelect(now - 90 * 86400, now + 86400))
+      return;
+   string comments[];
+   ulong  positions[];
+   int total = HistoryDealsTotal();
+   for(int k = 0; k < total; k++)
+     {
+      ulong d = HistoryDealGetTicket(k);
+      if(d == 0 || HistoryDealGetString(d, DEAL_SYMBOL) != _Symbol)
+         continue;
+      if((ulong)HistoryDealGetInteger(d, DEAL_MAGIC) != InpMagic || HistoryDealGetInteger(d, DEAL_ENTRY) != DEAL_ENTRY_IN)
+         continue;
+      int n = ArraySize(comments);
+      ArrayResize(comments, n + 1);
+      ArrayResize(positions, n + 1);
+      comments[n]  = HistoryDealGetString(d, DEAL_COMMENT);
+      positions[n] = (ulong)HistoryDealGetInteger(d, DEAL_POSITION_ID);
+     }
+   // HistorySelectByPosition() below resets the selection, so the deals are copied first
+   for(int k = 0; k < ArraySize(comments); k++)
+     {
+      RestoreSide(g_bull, true, comments[k], positions[k]);
+      RestoreSide(g_bear, false, comments[k], positions[k]);
+     }
+  }
+
+void RestoreSide(OrderBlock &arr[], bool bull, string comment, ulong pos)
+  {
+   for(int i = 0; i < ArraySize(arr); i++)
+     {
+      if(StringFind(comment, ObTag(arr[i], bull)) < 0)
+         continue;
+      arr[i].entries++;
+      if(PositionOpenById(pos))
+         arr[i].posId = pos;
+      else
+         if(ClosedProfit(pos) > 0 && !InpReentryAfterWin)
+            arr[i].won = true;
+     }
+  }
+
+string ObTag(const OrderBlock &ob, bool bull)
+  {
+   return (bull ? "B " : "S ") + TimeToString(ob.obTime, TIME_DATE | TIME_MINUTES);
+  }
+
+bool PositionOpenById(ulong id)
+  {
+   for(int i = PositionsTotal() - 1; i >= 0; i--)
+     {
+      ulong t = PositionGetTicket(i);
+      if(t > 0 && (ulong)PositionGetInteger(POSITION_IDENTIFIER) == id)
+         return true;
+     }
+   return false;
+  }
+
+double ClosedProfit(ulong id)
+  {
+   if(!HistorySelectByPosition(id))
+      return 0;
+   double p = 0;
+   for(int k = 0; k < HistoryDealsTotal(); k++)
+     {
+      ulong d = HistoryDealGetTicket(k);
+      p += HistoryDealGetDouble(d, DEAL_PROFIT) + HistoryDealGetDouble(d, DEAL_SWAP) + HistoryDealGetDouble(d, DEAL_COMMISSION);
+     }
+   return p;
+  }
+
+//+------------------------------------------------------------------+
 bool Rejection(const OrderBlock &ob, bool bull)
   {
    if(bull)
@@ -468,14 +688,14 @@ bool Levels(const OrderBlock &ob, bool bull, double entry, double &sl, double &t
       sl   = ob.btm - InpSLBufferATR * atr;
       risk = MathMax(entry - sl, minRisk);
       sl   = entry - risk;
-      tp   = entry + InpRR * risk;
+      tp   = (InpRR > 0) ? entry + InpRR * risk : 0;
      }
    else
      {
       sl   = ob.top + InpSLBufferATR * atr;
       risk = MathMax(sl - entry, minRisk);
       sl   = entry + risk;
-      tp   = entry - InpRR * risk;
+      tp   = (InpRR > 0) ? entry - InpRR * risk : 0;
      }
    if(InpMaxRiskATR > 0 && risk > InpMaxRiskATR * atr)
      {
@@ -793,6 +1013,18 @@ string SideText(string side, OrderBlock &arr[])
 
 string StatusText(const OrderBlock &ob)
   {
+   if(InpEntryMode == ENTRY_SWEEP)
+     {
+      if(ob.posId > 0)
+         return StringFormat("IN TRADE %d/%d", ob.entries, InpMaxEntries);
+      if(ob.won)
+         return StringFormat("WON %d/%d", ob.entries, InpMaxEntries);
+      if(ob.entries >= InpMaxEntries)
+         return StringFormat("DONE %d/%d", ob.entries, InpMaxEntries);
+      if(ob.breaker)
+         return StringFormat("BREAKER %d/%d", ob.entries, InpMaxEntries);
+      return StringFormat("WAIT SWEEP %d/%d", ob.entries, InpMaxEntries);
+     }
    if(ob.breaker)
       return "BREAKER";
    if(ob.ticket > 0)
