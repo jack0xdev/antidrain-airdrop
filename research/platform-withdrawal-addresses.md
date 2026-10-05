@@ -1,0 +1,762 @@
+# Platform withdrawal (hot wallet) addresses — EVM
+
+Source: [https://github.com/dawsbot/eth-labels](https://github.com/dawsbot/eth-labels) (Etherscan-family name tags), dataset commit `d9b21ae`.
+654 unique addresses across 13 platforms. Full list: `platform-withdrawal-addresses.csv`.
+
+**Not verified as currently active.** Run `check_last_activity.py` with an Etherscan API key
+to get each address's last outgoing transaction date before relying on it.
+Numbered tags (e.g. `Binance 14`) mean exchange-owned; some are cold/treasury wallets, not withdrawal senders.
+"Chains tagged" = explorers where the dataset carries the tag. Etherscan-family explorers share labels,
+so a chain listed there does not prove the address sends on that chain — check with `--chains`.
+
+## Summary
+
+| Platform | Covers directory entries | Addresses | Explicit `Hot Wallet` tags |
+|---|---|---|---|
+| Binance | Binance P2P | 118 | 21 |
+| OKX | OKX P2P | 221 | 5 |
+| Bybit | Bybit P2P, Bybit Card | 41 | 10 |
+| KuCoin | KuCoin P2P | 60 | 2 |
+| Bitget | Bitget exchange (Bitget Wallet Card: unconfirmed) | 35 | 4 |
+| Crypto.com | Crypto.com Card | 56 | 0 |
+| Nexo | Nexo Card | 66 | 0 |
+| ChangeNOW | ChangeNOW | 22 | 2 |
+| SimpleSwap | SimpleSwap | 9 | 0 |
+| Remitano | Remitano | 13 | 1 |
+| Wirex | Wirex | 7 | 0 |
+| Paxful | Paxful | 3 | 0 |
+| BitPay | BitPay | 3 | 0 |
+
+## No labeled withdrawal wallet found
+
+Not in the dataset (no public label): ChangeHero, StealthEX, Exolix, Godex, Trocuro, SWFT, RedotPay, CWallet, SwapSpace (aggregator, routes to partners).
+
+## No withdrawal address exists
+
+DEX, aggregators, bridges, lending, staking, perps, multi-send, NFT and on-chain launchpads pay out
+from their smart contracts, not from a wallet. Explorers/analytics/tax tools and self-custody wallet
+apps hold no funds. Binance Launchpad pays out through Binance (see Binance).
+
+## Not covered
+
+Tron, Solana, Bitcoin and Polygon are not in this dataset. Look these up on Tronscan / Solscan /
+Arkham entity pages by hand.
+
+## Binance
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0x631fc1ea2270e98fbd9d92658ece0f5a269aa161` | Binance: Hot Wallet | Avalanche, BSC, World Chain |
+| `0xb1256d6b31e4ae87da1d56e5890c66be7f1c038e` | Binance: Hot Wallet 2 | Avalanche, BSC, World Chain |
+| `0xe2fc31f816a9b94326492132018c3aecc4a93ae1` | Binance: Hot Wallet 7 | BSC |
+| `0xdccf3b77da55107280bd850ea519df3705d1a75a` | Binance: Hot Wallet 9 | BSC |
+| `0xeb2d2f1b8c558a40207669291fda468e50c8a0bb` | Binance: Hot Wallet 10 | Avalanche, BSC, World Chain |
+| `0x161ba15a5f335c9f06bb5bbb0a9ce14076fbb645` | Binance: Hot Wallet 11 | Avalanche, BSC, World Chain |
+| `0x515b72ed8a97f42c568d6a143232775018f133c8` | Binance: Hot Wallet 12 | Avalanche, BSC, World Chain |
+| `0xbd612a3f30dca67bf60a39fd0d35e39b7ab80774` | Binance: Hot Wallet 13 | Avalanche, BSC, World Chain |
+| `0x7a8a34db9acd10c3b6277473b192fe47192569ca` | Binance: Hot Wallet 14 | Avalanche, BSC, World Chain |
+| `0x1d40b233cdf2cc0cdc347d5401d5b02c2831a0c1` | Binance: Hot Wallet 15 | Avalanche, World Chain |
+| `0xa180fe01b906a1be37be6c534a3300785b20d947` | Binance: Hot Wallet 16 | Avalanche, BSC, World Chain |
+| `0x29bdfbf7d27462a2d115748ace2bd71a2646946c` | Binance: Hot Wallet 17 | Avalanche, BSC, World Chain |
+| `0x73f5ebe90f27b46ea12e5795d16c4b408b19cc6f` | Binance: Hot Wallet 18 | Avalanche, BSC, World Chain |
+| `0x1fbe2acee135d991592f167ac371f3dd893a508b` | Binance: Hot Wallet 19 | Avalanche, BSC, World Chain |
+| `0xf977814e90da44bfa03b6295a0616a897441acec` | Binance: Hot Wallet 20 | Avalanche, BSC, World Chain |
+| `0x01c952174c24e1210d26961d456a77a39e1f0bb0` | Binance: Hot Wallet 23 | Avalanche, World Chain |
+| `0xacd03d601e5bb1b275bb94076ff46ed9d753435a` | Binance 1 / Binance 55 | Avalanche, Optimism, World Chain |
+| `0xd551234ae421e3bcba99a0da6d736074f22192ff` | Binance 2 | Avalanche, World Chain |
+| `0x564286362092d8e7936f0549571a803b203aaced` | Binance 3 | Avalanche, World Chain |
+| `0x0681d8db095565fe8a346fa0277bffde9c0edbbf` | Binance 4 | Avalanche, World Chain |
+| `0xfe9e8709d3215310075d67e3ed32a380ccf451c8` | Binance 5 | Avalanche, World Chain |
+| `0x4e9ce36e442e55ecd9025b9a6e0d88485d628a67` | Binance 6 | Avalanche, World Chain |
+| `0xbe0eb53f46cd790cd13851d5eff43d12404d33e8` | Binance 7 | Avalanche, Ethereum, World Chain |
+| `0x001866ae5b3de6caa5a51543fd9fb64f524f5478` | Binance 9 | Avalanche, World Chain |
+| `0x85b931a32a0725be14285b66f1a22178c672d69b` | Binance 10 | Avalanche, World Chain |
+| `0x708396f17127c42383e3b9014072679b2f60b82f` | Binance 11 | Avalanche, World Chain |
+| `0xe0f0cfde7ee664943906f17f7f14342e76a5cec7` | Binance 12 | Avalanche, World Chain |
+| `0x8f22f2063d253846b53609231ed80fa571bc0c8f` | Binance 13 | Avalanche, World Chain |
+| `0x28c6c06298d514db089934071355e5743bf21d60` | Binance 14 | Avalanche, World Chain |
+| `0x21a31ee1afc51d94c2efccaa2092ad1028285549` | Binance 15 | Avalanche, World Chain |
+| `0xdfd5293d8e347dfe59e90efd55b2956a1343963d` | Binance 16 | Avalanche, World Chain |
+| `0x56eddb7aa87536c09ccc2793473599fd21a8b17f` | Binance 17 | Avalanche, World Chain |
+| `0x9696f59e4d72e237be84ffd425dcad154bf96976` | Binance 18 | Avalanche, World Chain |
+| `0x4d9ff50ef4da947364bb9650892b2554e7be5e2b` | Binance 19 | Avalanche, World Chain |
+| `0x4976a4a02f38326660d17bf34b431dc6e2eb2327` | Binance 20 | Avalanche, Ethereum, World Chain |
+| `0xd88b55467f58af508dbfdc597e8ebd2ad2de49b3` | Binance 21 | Avalanche, World Chain |
+| `0x7dfe9a368b6cf0c0309b763bb8d16da326e8f46e` | Binance 22 | Avalanche, World Chain |
+| `0x345d8e3a1f62ee6b1d483890976fd66168e390f2` | Binance 23 | Avalanche, World Chain |
+| `0xc3c8e0a39769e2308869f7461364ca48155d1d9e` | Binance 24 | Avalanche, World Chain |
+| `0x2e581a5ae722207aa59acd3939771e7c7052dd3d` | Binance 25 | Avalanche, World Chain |
+| `0x44592b81c05b4c35efb8424eb9d62538b949ebbf` | Binance 26 | Avalanche, World Chain |
+| `0xa344c7ada83113b3b56941f6e85bf2eb425949f3` | Binance 27 | Avalanche, World Chain |
+| `0x5a52e96bacdabb82fd05763e25335261b270efcb` | Binance 28 | Avalanche, World Chain |
+| `0x06a0048079ec6571cd1b537418869cde6191d42d` | Binance 29 | Avalanche, World Chain |
+| `0x892e9e24aea3f27f4c6e9360e312cce93cc98ebe` | Binance 30 | Avalanche, World Chain |
+| `0x00799bbc833d5b168f0410312d2a8fd9e0e3079c` | Binance 31 | Avalanche, World Chain |
+| `0x141fef8cd8397a390afe94846c8bd6f4ab981c48` | Binance 32 | Avalanche, World Chain |
+| `0x50d669f43b484166680ecc3670e4766cdb0945ce` | Binance 33 | Avalanche, World Chain |
+| `0x2f7e209e0f5f645c7612d7610193fe268f118b28` | Binance 34 | Avalanche, World Chain |
+| `0xd9d93951896b4ef97d251334ef2a0e39f6f6d7d7` | Binance 35 | Avalanche, World Chain |
+| `0x294b9b133ca7bc8ed2cdd03ba661a4c6d3a834d9` | Binance 41 | Avalanche, World Chain |
+| `0x5d7f34372fa8708e09689d400a613eee67f75543` | Binance 42 | Avalanche, World Chain |
+| `0x3c783c21a0383057d128bae431894a5c19f9cf06` | Binance 47 / Binance: Hot Wallet 8 | Avalanche, BSC, World Chain |
+| `0xe7804c37c13166ff0b37f5ae0bb07a3aebb6e245` | Binance 48 | Avalanche, World Chain |
+| `0x9f8c163cba728e99993abe7495f06c0a3c8ac8b9` | Binance 49 | Avalanche, World Chain |
+| `0x8894e0a0c962cb723c1976a4421c95949be2d4e3` | Binance 51 / Binance: Hot Wallet 6 | Avalanche, BSC, World Chain |
+| `0x082489a616ab4d46d1947ee3f912e080815b08da` | Binance 53 | Avalanche, World Chain |
+| `0xb38e8c17e38363af6ebdcb3dae12e0243582891d` | Binance 54 | Avalanche, World Chain |
+| `0x1b5b4e441f5a22bfd91b7772c780463f66a74b35` | Binance 56 | Avalanche, World Chain |
+| `0x17b692ae403a8ff3a3b2ed7676cf194310dde9af` | Binance 57 / Binance: Hot Wallet 3 | Avalanche, BSC, World Chain |
+| `0x8ff804cc2143451f454779a40de386f913dcff20` | Binance 58 / Binance: Hot Wallet 4 | Avalanche, BSC, World Chain |
+| `0xad9ffffd4573b642959d3b854027735579555cbc` | Binance 59 / Binance: Hot Wallet 5 | Avalanche, BSC, World Chain |
+| `0xf2de20dbf4b224af77aa4ff446f43318800bd6b4` | Binance 63 | Avalanche, World Chain |
+| `0x7ab33ad1e91ddf6d5edf69a79d5d97a9c49015d4` | Binance 64 | Avalanche, World Chain |
+| `0x4d072a68d0428a9a3054e03ad7ee61c557b537ab` | Binance 65 | Avalanche, World Chain |
+| `0x1763f1a93815ee6e6bc3c4475d31cc9570716db2` | Binance 66 | Avalanche, World Chain |
+| `0x972bed5493f7e7bdc760265fbb4d8e73ea89e453` | Binance 67 | Avalanche, World Chain |
+| `0x290275e3db66394c52272398959845170e4dcb88` | Binance 68 | Avalanche, World Chain |
+| `0x505e71695e9bc45943c58adec1650577bca68fd9` | Binance 69 | Avalanche, World Chain |
+| `0x835678a611b28684005a5e2233695fb6cbbb0007` | Binance 70 | Avalanche, World Chain |
+| `0x07b664c8af37eddaa7e3b6030ed1f494975e9dfb` | Binance 71 | Avalanche, World Chain |
+| `0x3304e22ddaa22bcdc5fca2269b418046ae7b566a` | Binance 73 | Avalanche, World Chain |
+| `0xa7c0d36c4698981fab42a7d8c783674c6fe2592d` | Binance 74 | Avalanche, World Chain |
+| `0x7e278a68a35d76a7e4b2c9d8b778acd775c6d832` | Binance 75 | Avalanche, World Chain |
+| `0x001ceb373c83ae75b9f5cf78fc2aba3e185d09e2` | Binance 76 | Avalanche, World Chain |
+| `0x923fc76cb13a14e5a87843d309c9f401ec498e2d` | Binance 77 | Avalanche, World Chain |
+| `0x3cdfb47b0e910d9190ed788726cd72489bf10499` | Binance 78 | Avalanche, World Chain |
+| `0x417850c1cd0fb428eb63649e9dc4c78ede9a34e8` | Binance 79 | Avalanche, World Chain |
+| `0xb32e9a84ae0b55b8ab715e4ac793a61b277bafa3` | Binance 80 | Avalanche, World Chain |
+| `0x4aefa39caeadd662ae31ab0ce7c8c2c9c0a013e8` | Binance 81 | Avalanche, World Chain |
+| `0x87917d879ba83ce3ada6e02d49a10c1ec1988062` | Binance 82 | Avalanche, World Chain |
+| `0x7aed074ca56f5050d5a2e512ecc5bf7103937d76` | Binance 83 | Avalanche, World Chain |
+| `0xa84fd90d8640fa63d194601e0b2d1c9094297083` | Binance 84 | Avalanche, World Chain |
+| `0x6d8be5cdf0d7dee1f04e25fd70b001ae3b907824` | Binance 85 | Avalanche, World Chain |
+| `0xeb25df7c79a85640c4420680461dcdfd91f0dfad` | Binance 86 | Avalanche, World Chain |
+| `0x6be5a267b04e9f24cdc1824fd38d63c436be91ab` | Binance 87 | Avalanche, World Chain |
+| `0x3931dab967c3e2dbb492fe12460a66d0fe4cc857` | Binance 89 | Avalanche, World Chain |
+| `0xad354cfbaa4a8572dd6df021514a3931a8329ef5` | Binance 90 | Avalanche, World Chain |
+| `0xe1940f578743367f38d3f25c2d2d32d6636929b6` | Binance 91 | Avalanche, World Chain |
+| `0x25681ab599b4e2ceea31f8b498052c53fc2d74db` | Binance 94 | Avalanche, World Chain |
+| `0x29fe6c66097f7972d8e47c4f691576327fcf9a12` | Binance 95 | Avalanche, World Chain |
+| `0xfdd2ba77db02caa6a9869735dac577d809cadd11` | Binance 96 | Avalanche, World Chain |
+| `0x9bf4001d307dfd62b26a2f1307ee0c0307632d59` | Binance 97 | Avalanche, World Chain |
+| `0xdee6238780f98c0ca2c2c28453149bea49a3abc9` | Binance 98 | Avalanche, World Chain |
+| `0x6d9348910e6ed90c1bb170c47965f5f7b8e19763` | Binance 99 | Avalanche, World Chain |
+| `0xa4e471dbfe8c95d4c44f520b19cee436c01c3267` | Binance 100 | Avalanche, World Chain |
+| `0xd2c0b70b9b451f7e2688d72460215d84caa6cbe4` | Binance 101 | Avalanche, World Chain |
+| `0xf6436829cf96ea0f8bc49d300c536fcc4f84c4ed` | Binance 102 | Avalanche, World Chain |
+| `0xcc71dd74183ea325f537665678263565c0b7e493` | Binance 103 | Avalanche, World Chain |
+| `0xe4b5b2667e049ac8c79ae6c5a7e3300815aa32be` | Binance 104 | Avalanche, World Chain |
+| `0x00f9451385bf75910d80374eb42edf36d1a3f243` | Binance 105 | Avalanche, World Chain |
+| `0x4fdfe365436b5273a42f135c6a6244a20404271e` | Binance 106 | Avalanche, World Chain |
+| `0x18e226459ccf0eec276514a4fd3b226d8961e4d1` | Binance 107 | Avalanche, World Chain |
+| `0xef268b5c05452d63a17da12f562368e88a036ef1` | Binance 108 | Avalanche, World Chain |
+| `0xcddc5d0ebeb71a08fff26909aa6c0d4e256b4fe1` | Binance 109 | Avalanche, World Chain |
+| `0xaba2d404c5c41da5964453a368aff2604ae80a14` | Binance 110 | Avalanche, World Chain |
+| `0xab72bd3eb3b5cc90165fa39da85ad0d496330c00` | Binance 111 | Avalanche, World Chain |
+| `0xa64b436964e7415c0e70b9989a53e1fb9a90e726` | Binance 112 | Avalanche, World Chain |
+| `0x978b21a854dbefcd6d51dfd269875d158046240b` | Binance 113 | Avalanche, World Chain |
+| `0x64de13c46f627d9c86212050d48756fb65c06d8a` | Binance 114 | Avalanche, World Chain |
+| `0x4aec0e98fc1fb55b9cc2faaa7a81acca42cb4e96` | Binance 115 | Avalanche, World Chain |
+| `0x43839fe6bb18eae45c4228e5d6c8521a9ab57b6e` | Binance 116 | Avalanche, World Chain |
+| `0x43684d03d81d3a4c70da68febdd61029d426f042` | Binance 117 | Avalanche, World Chain |
+| `0x3bce63c6c9abf7a47f52c9a3a7950867700b0158` | Binance 118 | Avalanche, World Chain |
+| `0x308a2a0712570daeea77c8ba9c27a32cdc4000d4` | Binance 119 | Avalanche, World Chain |
+| `0x1b46970cfe6a271e884f636663c257a5a571fb2c` | Binance 120 | Avalanche, World Chain |
+| `0x030e37ddd7df1b43db172b23916d523f1599c6cb` | Binance 121 | Avalanche, World Chain |
+| `0x7e3042bddcbf60928074ea0a5907c5ed5ae57e91` | Binance 122 | Avalanche, World Chain |
+
+## OKX
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0x4b4e14a3773ee558b6597070797fd51eb48606e5` | OKX: Hot Wallet | Avalanche, World Chain |
+| `0x4e7b110335511f662fdbb01bf958a7844118c0d4` | OKX: Hot Wallet 2 | Avalanche, World Chain |
+| `0xa9ac43f5b5e38155a288d1a01d2cbc4478e14573` | OKX: Hot Wallet 3 | Avalanche, World Chain |
+| `0xd19d3341227967610b94e7aebe8c971d2d48f419` | OKX: Hot Wallet 4 | Avalanche, World Chain |
+| `0x559432e18b281731c054cd703d4b49872be4ed53` | OKX: Hot Wallet 5 | Avalanche, World Chain |
+| `0x236f9f97e0e62388479bf9e5ba4889e46b0273c3` | OKX 2 | Ethereum, World Chain |
+| `0xa7efae728d2936e78bda97dc267687568dd593f3` | OKX 3 | Ethereum, World Chain |
+| `0xa16f524a804beaed0d791de0aa0b5836295a2a84` | OKX 3 / OKX 34 | Avalanche, World Chain |
+| `0x2c8fbb630289363ac80705a1a61273f76fd5a161` | OKX 4 | Avalanche, Ethereum, World Chain |
+| `0x59fae149a8f8ec74d5bc038f8b76d25b136b9573` | OKX 5 | Avalanche, Ethereum, World Chain |
+| `0x98ec059dc3adfbdd63429454aeb0c990fba4a128` | OKX 6 | Avalanche, Ethereum, World Chain |
+| `0x5041ed759dd4afc3a72b8192c143f72f4724081a` | OKX 7 | Avalanche, Ethereum, World Chain |
+| `0xcba38020cd7b6f51df6afaf507685add148f6ab6` | OKX 8 | Avalanche, Ethereum, World Chain |
+| `0x461249076b88189f8ac9418de28b365859e46bfd` | OKX 9 | Avalanche, Ethereum, World Chain |
+| `0xc5451b523d5fffe1351337a221688a62806ad91a` | OKX 10 | Avalanche, Ethereum, World Chain |
+| `0x42436286a9c8d63aafc2eebbca193064d68068f2` | OKX 11 | Avalanche, Ethereum, World Chain |
+| `0x69a722f0b5da3af02b4a205d6f0c285f4ed8f396` | OKX 12 | Avalanche, Ethereum, World Chain |
+| `0xc708a1c712ba26dc618f972ad7a187f76c8596fd` | OKX 13 | Avalanche, Ethereum, World Chain |
+| `0x6fb624b48d9299674022a23d92515e76ba880113` | OKX 14 | Avalanche, Ethereum, World Chain |
+| `0xf59869753f41db720127ceb8dbb8afaf89030de4` | OKX 15 | Avalanche, Ethereum, World Chain |
+| `0x65a0947ba5175359bb457d3b34491edf4cbf7997` | OKX 16 | Avalanche, Ethereum, World Chain |
+| `0x4d19c0a5357bc48be0017095d3c871d9afc3f21d` | OKX 17 | Avalanche, Ethereum, World Chain |
+| `0x5c52cc7c96bde8594e5b77d5b76d042cb5fae5f2` | OKX 18 | Avalanche, Ethereum, World Chain |
+| `0xe9172daf64b05b26eb18f07ac8d6d723acb48f99` | OKX 19 | Avalanche, Ethereum, World Chain |
+| `0x7eb6c83ab7d8d9b8618c0ed973cbef71d1921ef2` | OKX 20 | Avalanche, Ethereum, World Chain |
+| `0xbda23b750dd04f792ad365b5f2a6f1d8593796f2` | OKX 21 | Avalanche, Ethereum, World Chain |
+| `0x276cdba3a39abf9cedba0f1948312c0681e6d5fd` | OKX 22 | Avalanche, Ethereum, World Chain |
+| `0x3d55ccb2a943d88d39dd2e62daf767c69fd0179f` | OKX 23 | Avalanche, Ethereum, World Chain |
+| `0xbf94f0ac752c739f623c463b5210a7fb2cbb420b` | OKX 24 | Avalanche, Ethereum, World Chain |
+| `0xf7858da8a6617f7c6d0ff2bcafdb6d2eedf64840` | OKX 25 | Avalanche, Ethereum, World Chain |
+| `0x68841a1806ff291314946eebd0cda8b348e73d6d` | OKX 26 | Avalanche, Ethereum, World Chain |
+| `0xd7efcbb86efdd9e8de014dafa5944aae36e817e4` | OKX 27 | Avalanche, Ethereum, World Chain |
+| `0xf51cd688b8744b1bfd2fba70d050de85ec4fb9fb` | OKX 28 | Avalanche, World Chain |
+| `0xcbffcb2c38ecd19468d366d392ac0c1dc7f04bb6` | OKX 29 | Avalanche, World Chain |
+| `0xc3ae71fe59f5133ba180cbbd76536a70dec23d40` | OKX 30 | Avalanche, World Chain |
+| `0xe95f6604a591f6ba33accb43a8a885c9c272108c` | OKX 31 | Avalanche, World Chain |
+| `0x0938c63109801ee4243a487ab84dffa2bba4589e` | OKX 32 | Avalanche, World Chain |
+| `0x06959153b974d0d5fdfd87d561db6d8d4fa0bb0b` | OKX 33 | Avalanche, World Chain |
+| `0x3b5a23f6207d87b423c6789d2625ea620423b32d` | OKX 35 | Avalanche, World Chain |
+| `0x2d2cc0eb095e43204e0c087e07dbf95909650939` | OKX 36 | Avalanche, World Chain |
+| `0x62383739d68dd0f844103db8dfb05a7eded5bbe6` | OKX 37 | Avalanche, World Chain |
+| `0x7e4aa755550152a522d9578621ea22edab204308` | OKX 38 | World Chain |
+| `0xebe80f029b1c02862b9e8a70a7e5317c06f62cae` | OKX 39 | Avalanche, World Chain |
+| `0x11817afb29279703c5679959417015328ca6a0d1` | OKX 40 | Avalanche, World Chain |
+| `0x793aa889e19a130ee4cb8b63c79aa3bdccc663cb` | OKX 41 | Avalanche, World Chain |
+| `0x52738a51882f35d6b25a3fd0c86089ddbd206821` | OKX 42 | Avalanche, World Chain |
+| `0xae0cbaba071d58efc278a815b2cb652286e192ff` | OKX 43 | Avalanche, World Chain |
+| `0xd576392cb12b7749ba33f8d223f64e65ee32f03f` | OKX 44 | Avalanche, World Chain |
+| `0xe983845a04c681a295dd9ce1fa8c2c8505932da3` | OKX 45 | Avalanche, World Chain |
+| `0xd266529641eeffaa2b2a0bc99daa5b32ef241078` | OKX 46 | Avalanche, World Chain |
+| `0x48c4c83be7e3884ee5043a3abe5115eb020b5f4a` | OKX 47 | Avalanche, World Chain |
+| `0x4e2757e46103556f98d4d036d8efe18389b89f51` | OKX 48 | Avalanche, World Chain |
+| `0xdad24044e36587d975d7b5bceb6467fac21e0c81` | OKX 49 | Avalanche, World Chain |
+| `0xcd5bd47d3d1d8412b241ce9015c5032142948c12` | OKX 50 | Avalanche, World Chain |
+| `0xd3d7dbe73bbdd5a5c7a49ca322763c4d400fc240` | OKX 51 | Avalanche, World Chain |
+| `0x0475dd0e4194422a8cac486dc69173f535d0baf4` | OKX 52 | Avalanche, World Chain |
+| `0x30c1dcde81e5dbf3121d0408abc7908980e83ae2` | OKX 53 | Avalanche, World Chain |
+| `0x313eb1c5e1970eb5ceef6aebad66b07c7338d369` | OKX 54 | Avalanche, World Chain |
+| `0xdb0ed345cb52c2f2457918afa3eb4b682e264ad0` | OKX 55 | Avalanche, World Chain |
+| `0x48480aad203e8b030f82754b3c75869c9895c6bf` | OKX 56 | Avalanche, World Chain |
+| `0x3c5883c650d600bd543a9b5c8d9a3a6f5d16b8f4` | OKX 57 | Avalanche, World Chain |
+| `0x4a11078a99b118bbfee78a5c187d98d264360433` | OKX 58 | Avalanche, World Chain |
+| `0x8734bca44102bf8a663e1ba112308504606e1b08` | OKX 59 | Avalanche, World Chain |
+| `0xde01974fb4a98bafd7cbf8a06ecf6dcc94d7283f` | OKX 60 | Avalanche, World Chain |
+| `0x06d3a30cbb00660b85a30988d197b1c282c6dcb6` | OKX 61 | Avalanche, World Chain |
+| `0x6d8c32fcf2d95ff410ba492f6694f18cbee55ce1` | OKX 62 | Avalanche, World Chain |
+| `0x730df969955c0a2fa9e8f2484e9741a363afdbb3` | OKX 63 | Avalanche, World Chain |
+| `0xb99cc7e10fe0acc68c50c7829f473d81e23249cc` | OKX 64 | Avalanche, World Chain |
+| `0x56fd42ecd77c88bdd959be54af10d1759b473dff` | OKX 65 | Avalanche, World Chain |
+| `0x25236e080106b5387df201fbbd9a6b870917676d` | OKX 66 | Avalanche, World Chain |
+| `0x728d92a8023bfbe0d4f3fdd549ed3b4996a0eba9` | OKX 67 | Avalanche, World Chain |
+| `0x3f482c72a2b3e777746f5755cc0ff1323ea2ad16` | OKX 68 | Avalanche, World Chain |
+| `0xbfef5c888bb7a0a6b14b4c3ccc4364ea81aa573f` | OKX 69 | Avalanche, World Chain |
+| `0xa2684f75740cfff46c29bae79a4ecc43043c003d` | OKX 70 | Avalanche, World Chain |
+| `0xb072b7dc9521d97a3f12b04beb1e497f8875ec52` | OKX 71 | Avalanche, World Chain |
+| `0x0799ddbf6f14db566ca4df4ff0575c4cc1e7749c` | OKX 72 | Avalanche, World Chain |
+| `0x539c92186f7c6cc4cbf443f26ef84c595babbca1` | OKX 73 | Avalanche, World Chain |
+| `0xf7c63e75b90c60d7b343106a39658f8b3ca6e4d2` | OKX 74 | Avalanche, World Chain |
+| `0x52b311c52436789f3754bd199bf3886b8ccbab4c` | OKX 75 | Avalanche, World Chain |
+| `0x868dab0b8e21ec0a48b726a1ccf25826c78c6d7f` | OKX 76 | Avalanche, World Chain |
+| `0xdc3ce895714844b4775b6d06f0dae513542cee10` | OKX 77 | Avalanche, World Chain |
+| `0x12a8bdc0470ab29a229d828526641b7d1f170fcf` | OKX 78 | Avalanche, World Chain |
+| `0xcbc767b519394a9e4682cc9a15dcd18c46a6045b` | OKX 79 | Avalanche, World Chain |
+| `0xeaed6576334b003d1c5c4797d9c7bb025a20c038` | OKX 80 | Avalanche, World Chain |
+| `0x68b5e9e083bfc28c33cfbf3f19d33e629015e907` | OKX 81 | Avalanche, World Chain |
+| `0x03ae1a796dfe0400439211133d065bda774b9d3e` | OKX 82 | Avalanche, World Chain |
+| `0xdeb6ad2a7820839464da79bac953ae6189215443` | OKX 83 | Avalanche, World Chain |
+| `0x9e3bb2cd5a89fcc4b826230b144c4917881bea85` | OKX 84 | Avalanche, World Chain |
+| `0x4106a4be14867c70e52c51b9805514ae2e16de64` | OKX 85 | Avalanche, World Chain |
+| `0x297611b7accb7f24032c27b3a496465624c7ef50` | OKX 86 | Avalanche, World Chain |
+| `0x0ff9491b236a36cc183823e39d7532194143fdb1` | OKX 87 | Avalanche, World Chain |
+| `0xf81233a61c0d6d13c6fe504ddbba3e2630ea0c5c` | OKX 88 | Avalanche, World Chain |
+| `0x68e2ea1622aa67fb3a01a66d132daed8a48d1662` | OKX 89 | Avalanche, World Chain |
+| `0x9b645675e8d64759e5c36e30dcb766d8cec3d34f` | OKX 90 | Avalanche, World Chain |
+| `0xe6eea9812ccc5981ccf0ab333610c42c2d92d146` | OKX 91 | Avalanche, World Chain |
+| `0xcb0963264231bb08b2f680ab3ed89a49c9641bb3` | OKX 92 | Avalanche, World Chain |
+| `0xbfbbfaccd1126a11b8f84c60b09859f80f3bd10f` | OKX 93 | Avalanche, World Chain |
+| `0xb4ec508adeb174610b4295e233a458b3475964f7` | OKX 94 | Avalanche, World Chain |
+| `0x6667a4b7eff4a0b86781fb3b187622cd3c257f09` | OKX 95 | Avalanche, World Chain |
+| `0x4bcbaf34862e6480329477917cf5cd7b9537a98d` | OKX 96 | Avalanche, World Chain |
+| `0x41205307b6618f03be2d95747a07311456bdb143` | OKX 97 | Avalanche, World Chain |
+| `0xba0a39d37151fa4f938bec51cdae4675105760f4` | OKX 98 | Avalanche, World Chain |
+| `0xb47a0ac7798d8308467b2b96ac632ed43c9cb6d7` | OKX 99 | Avalanche, World Chain |
+| `0x267b51c97632225da2b2e49aebe59eef1af32653` | OKX 100 | Avalanche, World Chain |
+| `0xc68c17e6eec0fde3605c595c9b98de5c1a4cc3e4` | OKX 101 | Avalanche, World Chain |
+| `0x47eb32dea1ab1436187939fa72d6d5ff884a87da` | OKX 102 | Avalanche, World Chain |
+| `0xeb196a61f9a1e35bf5053b65aaa57c5541dcba86` | OKX 103 | Avalanche, World Chain |
+| `0xfcb21730ac0cd487d8701dfed1170e023b57cf7a` | OKX 104 | Avalanche, World Chain |
+| `0x6b7ba57e1d43c2c975ba25139a04d193e64a11d0` | OKX 105 | Avalanche, World Chain |
+| `0x17e91b98988937cb59dc163b0b11781f9785591a` | OKX 106 | Avalanche, World Chain |
+| `0x42cf18596ee08e877d532df1b7cf763059a7ea57` | OKX 107 | Avalanche, World Chain |
+| `0x6dc1a070425f437ac08bb108f7093b177d7af3a6` | OKX 108 | Avalanche, World Chain |
+| `0x5f8215ee653cb7225c741c7aa8591468d1f158b8` | OKX 109 | Avalanche, World Chain |
+| `0x5b27e98516fd2bd5001d4dfe3f5a2263f702f634` | OKX 110 | Avalanche, World Chain |
+| `0x6a4561ef7874a76b4bf0d3edca31dfcd51603414` | OKX 111 | Avalanche, World Chain |
+| `0xee1c6537e589a15a15f80961f5594c57bed936fb` | OKX 112 | Avalanche, World Chain |
+| `0x5a150733cb59bbdd5c7398a8fe7da7f97c8a213a` | OKX 113 | Avalanche, World Chain |
+| `0x16b5016803bcb4915701efc0a3b471bd4c168d93` | OKX 114 | Avalanche, World Chain |
+| `0x9723b6d608d4841eb4ab131687a5d4764eb30138` | OKX 115 | Avalanche, World Chain |
+| `0xba96a3f3d5e9f13a5f93c37001f946d42eb2e165` | OKX 116 | Avalanche, World Chain |
+| `0xd30b438df65f4f788563b2b3611bd6059bff4ad9` | OKX 117 | Avalanche, World Chain |
+| `0xd9a3c9ba5aa4415a53b9190bcb00f14472790a70` | OKX 118 | Avalanche, World Chain |
+| `0x8c3cb9665833fd9f79eb14cba16d82bbab6f22d8` | OKX 119 | Avalanche, World Chain |
+| `0x9e13bae2256f968d02fe0129a0f51788f4e2472f` | OKX 120 | Avalanche, World Chain |
+| `0xb640e1e5a5f726a054cd518c968dfdac8c421ee5` | OKX 121 | Avalanche, World Chain |
+| `0x88c94d8e7d4203b185b3beb0a7b15a6b4f36b2a2` | OKX 122 | Avalanche, World Chain |
+| `0xfd92f4e91d54b9ef91cc3f97c011a6af0c2a7eda` | OKX 137 | Avalanche, World Chain |
+| `0x6df7e0f084d46683e811998847da3832c9dc3b35` | OKX 139 | Avalanche, World Chain |
+| `0xf332761c673b59b21ff6dfa8ada44d78c12def09` | OKX 141 | Avalanche, World Chain |
+| `0xed55e0d547fd2fa53aa64f587b21a9caa9e2d90f` | OKX 142 | Avalanche, World Chain |
+| `0x88288100c2005c5ce9b06956bed357f3ccc95b9e` | OKX 143 | Avalanche, World Chain |
+| `0xb8b0b53b387b061af2717d642961af405c79e85a` | OKX 144 | Avalanche, World Chain |
+| `0xbe787d53e09822cc42bfb4abe1fb4492cae3d19d` | OKX 145 | Avalanche, World Chain |
+| `0x88956282d52eee0ae1bf8eaf98bc6eac2250b681` | OKX 146 | Avalanche, World Chain |
+| `0x7332cd352a84673f1413416ef2e321e17df59844` | OKX 147 | Avalanche, World Chain |
+| `0x5ff13e9a3eed7a2dbcb1dfa21dfb1c07f3419277` | OKX 148 | Avalanche, World Chain |
+| `0x0f51a310a4dd79d373eb8be1c0ddd54570235443` | OKX 149 | Avalanche, World Chain |
+| `0x5793da1b0c41c7db8e3eb8dbcd18fdca94a58535` | OKX 150 | Avalanche, World Chain |
+| `0x7afbf56c48d38d732e8b71db229a20a2eaea8532` | OKX 151 | Avalanche, World Chain |
+| `0x9e4e147d103def9e98462884e7ce06385f8ac540` | OKX 152 | Avalanche, World Chain |
+| `0xb0a27099582833c0cb8c7a0565759ff145113d64` | OKX 153 | Avalanche, World Chain |
+| `0x4a4aaa0155237881fbd5c34bfae16e985a7b068d` | OKX 154 | Avalanche, World Chain |
+| `0x0003b5aa5e30e97fcc596bb5d0f3a75255e08d4e` | OKX 155 | Avalanche, World Chain |
+| `0x74ac8ec0c6fc83b4127816c23930bea9e1a83df5` | OKX 157 | Avalanche, World Chain |
+| `0x10374bc1c4ca086e22673dbc4d702fee74c4ffc5` | OKX 158 | Avalanche, World Chain |
+| `0xdd6b3ac983ae0427d329a705108c26d2cb8f945e` | OKX 159 | Avalanche, World Chain |
+| `0xe7aafaad7eb2bb10771d14cdc4f62d3c7d4a3ba8` | OKX 160 | Avalanche, World Chain |
+| `0x3f83fd98d5fa84f3cbf8b275d6a10dfc5605cda2` | OKX 161 | Avalanche, World Chain |
+| `0x9e64afc7bca5f2c6607a5b8c378bcf1ec3531c97` | OKX 162 | Avalanche, World Chain |
+| `0x8d0abeb725fa260521ed54985a5f793141329ae9` | OKX 163 | Avalanche, World Chain |
+| `0x20a3a4ae2aacb8bbcfd89dc71280dd18cd9a0cb4` | OKX 164 | Avalanche, World Chain |
+| `0x83bdf89ce9b2b587785a89603d2d451f05cf719b` | OKX 165 | Avalanche, World Chain |
+| `0xff8a035ea6c80673f741c2265985ed976a40d390` | OKX 166 | Avalanche, World Chain |
+| `0x7c0629bbbaf7d68ffaa393e3fedc9b633679fa5f` | OKX 167 | Avalanche, World Chain |
+| `0x8db0f952b8b6a462445c732c41ec2937bcae9c35` | OKX 168 | Avalanche, World Chain |
+| `0x0096fc3267e9a3cecdbefb9edd09cea0a2cdfe0f` | OKX 169 | Avalanche, World Chain |
+| `0xd1e859c8fbb8acdcc8e815c70d33b6aca58fde8a` | OKX 170 | Avalanche, World Chain |
+| `0x451703122f1bb2d65cd2b08c0f9dc636c43d8718` | OKX 171 | Avalanche, World Chain |
+| `0xf61f565a37a08713740c2b9c56756dca687d926c` | OKX 172 | Avalanche, World Chain |
+| `0x8d371bc560246dc632c4e707707d85d2e568a832` | OKX 173 | Avalanche, World Chain |
+| `0xf28143f7b282e59bd5f979012982e7cb9d9b95b0` | OKX 174 | Avalanche, World Chain |
+| `0xf5988713400da6fc8a58ec9515e2b0df9b40b115` | OKX 175 | Avalanche, World Chain |
+| `0x343d752bb710c5575e417edb3f9fa06241a4749a` | OKX 176 | Avalanche, World Chain |
+| `0x39591e7c099a379fd7b349ebfecaeef439c40454` | OKX 177 | Avalanche, World Chain |
+| `0x0ba37936c50bbcdc7130c67d931e5fe14285b8eb` | OKX 178 | Avalanche, World Chain |
+| `0xc94bb9b883ab642c1c3ed07af4e36523e7daf1fe` | OKX 179 | Avalanche, World Chain |
+| `0x3aca1b103fe6dc6d11eda343b3ff25a6450eebeb` | OKX 180 | Avalanche, World Chain |
+| `0xa0420c29b214d09b9ec751aa1f592c7b1fa77da3` | OKX 181 | Avalanche, World Chain |
+| `0x7a93539c1bf9a96f87044925deb7a0849266213e` | OKX 182 | Avalanche, World Chain |
+| `0x11b113383ce08e84001dc614f141ae4c27221e31` | OKX 183 | Avalanche, World Chain |
+| `0xe4c13d0024162082fd11461ca737e1ba71772c60` | OKX 184 | Avalanche, World Chain |
+| `0xfe908731af54c56dfd63948f18ce5878a3b8a1ad` | OKX 185 | Avalanche, World Chain |
+| `0x0fd070ad29cbae04bbc22e5ec720c9f0235a2737` | OKX 186 | Avalanche, World Chain |
+| `0x6ededbad1e864105fa2538ddfbf4e7214b9e6529` | OKX 187 | Avalanche, World Chain |
+| `0xdddce28b1f7b0544eee9f8dd167ce6f72bc60403` | OKX 188 | Avalanche, World Chain |
+| `0xa485582eed34126fbb5387b35757e1f71dfc4ce8` | OKX 189 | Avalanche, World Chain |
+| `0x876164d68d68e4b65339694589811132da7a9bf7` | OKX 190 | Avalanche, World Chain |
+| `0x05d9617595e69ff577076355abc5e7c51ed0bdf3` | OKX 191 | Avalanche, World Chain |
+| `0x3c9df24f248ff949161a5a43bbf6dd69378d7799` | OKX 192 | Avalanche, World Chain |
+| `0x91d40e4818f4d4c57b4578d9eca6afc92ac8debe` | OKX 193 | Avalanche, World Chain |
+| `0xc9dd6e565e98c390b406b47e6e5e8cf9543e28fd` | OKX 194 | Avalanche, World Chain |
+| `0x64fa910048403c5d2243f471d63fca013ecb4d2b` | OKX 195 | Avalanche, World Chain |
+| `0x83ffcf28964bc5b739102ac43e62b8309f322548` | OKX 196 | Avalanche, World Chain |
+| `0x942c49276b6c3f45a5571c4c1a19b1a7ef3bb3cc` | OKX 197 | Avalanche, World Chain |
+| `0xc51a147567a99a307f7ba130a7dee8328312c711` | OKX 198 | Avalanche, World Chain |
+| `0x4db4ad8519baf1b1afaacf95496955352530c4d1` | OKX 199 | Avalanche, World Chain |
+| `0xc13f9011e2cea63e4c9f0d8177dfb17e9ec7daff` | OKX 200 | Avalanche, World Chain |
+| `0xdfd4547247ba13c6cb3300b412306be490f6e126` | OKX 201 | Avalanche, World Chain |
+| `0x6d046280c44c0fee770563614f7a7a71f156ca20` | OKX 202 | Avalanche, World Chain |
+| `0xfcba5fae8bb0754a3652feec1e60885a1efa76ce` | OKX 203 | Avalanche, World Chain |
+| `0x24f2ba8dba81265ecf053cbac410184ab38b2a92` | OKX 204 | Avalanche, World Chain |
+| `0xf3ad6f5f40479ba2b32d1531acba01e5fa8fde41` | OKX 205 | Avalanche, World Chain |
+| `0xe5dcada7985d5907544b119a92e8d7f395dcfd19` | OKX 206 | Avalanche, World Chain |
+| `0xc215537e47a1d01058f3ba39dce6752d8f217bbd` | OKX 207 | Avalanche, World Chain |
+| `0x73b2909e545ef439730427d057877134139de555` | OKX 208 | Avalanche, World Chain |
+| `0xdc7c5ea74740744ef9cd6a60cf4087a3c3941231` | OKX 209 | Avalanche, World Chain |
+| `0x58e7d88446cd56bec0e6051c1a58ce1234ec6933` | OKX 210 | Avalanche, World Chain |
+| `0xf3be85868c59b136c72eef96490291a17074ce2c` | OKX 211 | Avalanche, World Chain |
+| `0x268f8c596d556e6c51f594d8ca8d6183010871b7` | OKX 212 | Avalanche, World Chain |
+| `0x000000000000d5775ff7721cefb8097af62e52dd` | OKX 213 | Avalanche, World Chain |
+| `0x00000000004e3d5628234f18b977041e5242651f` | OKX 214 | Avalanche, World Chain |
+| `0x07b51adee570fcf3a21a864cba4d90d372f2fb94` | OKX 215 | Avalanche, World Chain |
+| `0x0f2c4650642ba2381836c7d215da3bdf0e0b36aa` | OKX 216 | Avalanche, World Chain |
+| `0x3b98b9e9cb75c1cb1729aab8f09ced2936505e4f` | OKX 217 | Avalanche, World Chain |
+| `0x9391466ad56f2705ce5fd12e763a65509aee4862` | OKX 218 | Avalanche, World Chain |
+| `0x073f564419b625a45d8aea3bb0de4d5647113ad7` | OKX 219 | Avalanche, World Chain |
+| `0xb1da6e546bd592218d6e849a8177d9d4fbf12986` | OKX 220 | Avalanche, World Chain |
+| `0x9c22a4039f269e72de6b029b273be059cdbb831c` | OKX 221 | Avalanche, World Chain |
+| `0x186637e312b92137b4d5a10b7b6b01932e55181e` | OKX 222 | Avalanche, World Chain |
+| `0x6908a0b31947ecdd070d4ac8ee0eabafe0901f37` | OKX 223 | Avalanche, World Chain |
+| `0x20e061a60bf70127ece373cc5ddf2c415eae8a32` | OKX 224 | Avalanche, World Chain |
+| `0x445f16314284b43dfa1fd3cd77b9dea4a1bebd97` | OKX 225 | Avalanche, World Chain |
+| `0x85dcd76d4fbd3aa0c85c27b9441222c19a14134b` | OKX 226 | Avalanche, World Chain |
+| `0x8e47e83ee263f1d5f92a9765fa49f7effd618d38` | OKX 227 | Avalanche, World Chain |
+| `0xb5216cb558cb018583bed009ee25ca73eb27bb1d` | OKX 228 | Avalanche, World Chain |
+| `0xc74e4c556a16390165c99b40aabc39a87c358305` | OKX 229 | Avalanche, World Chain |
+| `0xafee421482faea92292ed3ffe29371742542ad72` | OKX 230 | Avalanche, World Chain |
+| `0x3e8c0d3cf96b69c245b14923758dc8a2db8621ec` | OKX 231 | Avalanche, World Chain |
+| `0x5dfd97e75f564c9b0825743d2ad400fd05b6ad89` | OKX 232 | Avalanche, World Chain |
+| `0x57e2dcd253527a0f70c6a3de3556f6e6e163f19c` | OKX 233 | Avalanche, World Chain |
+| `0x17fe9197970454875df742a74b74ed5f984b645a` | OKX 234 | Avalanche, World Chain |
+
+## Bybit
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0xf89d7b9c864f589bbf53a82105107622b35eaa40` | Bybit: Hot Wallet | Avalanche, World Chain |
+| `0xa7a93fd0a276fc1c0197a5b5623ed117786eed06` | Bybit: Hot Wallet 2 | Avalanche, World Chain |
+| `0xe1ab8c08294f8ee707d4efa458eab8bbeeb09215` | Bybit: Hot Wallet 3 | Avalanche, World Chain |
+| `0xee5b5b923ffce93a870b3104b7ca09c3db80047a` | Bybit: Hot Wallet 4 | Avalanche, World Chain |
+| `0x18e296053cbdf986196903e889b7dca7a73882f6` | ByBit: Hot Wallet 5 | Avalanche, World Chain |
+| `0xbaed383ede0e5d9d72430661f3285daa77e9439f` | Bybit: Hot Wallet 6 | Avalanche, World Chain |
+| `0xf5f3436a05b5ced2490dae07b86eb5bbd02782aa` | Bybit: Hot Wallet 7 | Avalanche, World Chain |
+| `0x4230c402c08cb66dcf3820649a115e54661fce9d` | Bybit: Hot Wallet 8 | Avalanche, World Chain |
+| `0x3d5202a0564de9b05ecd07c955bcca964585ea03` | ByBit: Hot Wallet 9 | Avalanche, World Chain |
+| `0xa1abfa21f80ecf401bd41365adbb6fef6fefdf09` | Bybit: Hot Wallet 12 | Avalanche, World Chain |
+| `0x88a1493366d48225fc3cefbdae9ebb23e323ade3` | Bybit 2 | Avalanche, World Chain |
+| `0x1e32760a3285550278aeafa776e5641bc581c845` | Bybit 3 | Avalanche, World Chain |
+| `0x12136e543b551ecdfdea9a0ed23ed0eff5505ee0` | Bybit 4 | Avalanche, World Chain |
+| `0x4ce053dfe58541e08f149c1050eb3df09d7a40bc` | Bybit 5 | Avalanche, World Chain |
+| `0xd8db73f025adf9f1f6a754a4b0b7a9349b7ff128` | Bybit 6 | Avalanche, World Chain |
+| `0x57b83aaff113ef81a729b63274ed6f17404c9ba6` | Bybit 7 | Avalanche, World Chain |
+| `0x3ddb5d1247adc837cec3ba81edc923a4a230aa8f` | Bybit 8 | Avalanche, World Chain |
+| `0x0d4dc3b8becc98782309e443a6da4b9455b5ca48` | Bybit 9 | Avalanche, World Chain |
+| `0x1c3944173abee256456b1498299fc501ad5bbd6f` | Bybit 10 | Avalanche, World Chain |
+| `0xa6a9f45518881a788e29f82a032f9d400177d2b6` | Bybit 12 | Avalanche, World Chain |
+| `0xb5873e333161e5b45adac57379ec2b15d861178d` | Bybit 13 | Avalanche, World Chain |
+| `0x0051ef9259c7ec0644a80e866ab748a2f30841b3` | Bybit 14 | Avalanche, World Chain |
+| `0x828424517f9f04015db02169f4026d57b2b07229` | Bybit 15 | Avalanche, World Chain |
+| `0x869bcee3a0bad2211a65c63ec47dbd3d85a84d68` | Bybit 16 | Avalanche, World Chain |
+| `0x318d2aae4c99c2e74f7b5949fa1c34df837789b8` | Bybit 17 | Avalanche, World Chain |
+| `0x3bd0e57e2917d3d9a93f479b3a23b28c3f31a789` | Bybit 18 | Avalanche, World Chain |
+| `0x4865d4bcf4ab92e1c9ba5011560e7d4c36f54106` | Bybit 19 | Avalanche, World Chain |
+| `0x72187db55473b693ded367983212fe2db3768829` | Bybit 20 | Avalanche, World Chain |
+| `0xcab3f132a11e5b723fc20ddab8bb1b858d00a8e8` | Bybit 21 | Avalanche, World Chain |
+| `0x25c7d768a7d53e6ebe5590c621437126c766e1ea` | Bybit 22 | Avalanche, World Chain |
+| `0xc22166664e820cda6bf4cedbdbb4fa1e6a84c440` | Bybit 23 | Avalanche, World Chain |
+| `0xf2f40c3bb444288f6f64d8336dcc14dbd929fd94` | Bybit 24 | Avalanche, World Chain |
+| `0x63bee4a7e4aa5d76dc6ab9b9d1852aabb9a40936` | Bybit 25 | Avalanche, World Chain |
+| `0x6b9b774502e6afaafcac84f840ac8a0844a1abe3` | Bybit 26 | Avalanche, World Chain |
+| `0x80a9b4aab0ad3c73cce1c9223236b722db5d6628` | Bybit 27 | Avalanche, World Chain |
+| `0xdae4fdcb7fc93738ec6d5b1ea92b7c7f75e4f2f6` | Bybit 28 | Avalanche, World Chain |
+| `0xbce9aecd3985d4cbb9d273453159a26301fa02ef` | Bybit 29 | Avalanche, World Chain |
+| `0x2ffcb90d6455b99ec14b4842f82b504dae80736b` | Bybit 30 | Avalanche, World Chain |
+| `0xc3350595ed42ebe94556277bc77d257c76065291` | Bybit 31 | Avalanche, World Chain |
+| `0x79ae8c1b31b1e61c4b9d1040217a051f954d4433` | Bybit 32 | Avalanche, World Chain |
+| `0x3fb00e38602c6a501e19eda24787f40bccef0432` | Bybit 33 | Avalanche, World Chain |
+
+## KuCoin
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0xcd5f3c15120a1021155174719ec5fcf2c75adf5b` | KuCoin: Hot Wallet 1 | Avalanche, World Chain |
+| `0x53f78a071d04224b8e254e243fffc6d9f2f3fa23` | KuCoin: Hot Wallet 2 / Kucoin: Hot Wallet 2 | Avalanche, BSC, World Chain |
+| `0x2b5634c42055806a59e9107ed44d43c426e58258` | KuCoin 1 | Avalanche, World Chain |
+| `0x689c56aef474df92d44a1b70850f808488f9769c` | KuCoin 2 | Avalanche, Ethereum, World Chain |
+| `0xebb8ea128bbdff9a1780a4902a9380022371d466` | KuCoin 2 / KuCoin 27 | Avalanche, Optimism, World Chain |
+| `0x03e6fa590cadcf15a38e86158e9b3d06ff3399ba` | KuCoin 2 / KuCoin 24 | Arbitrum, Avalanche, World Chain |
+| `0xa1d8d972560c2f8144af871db508f0b0b10a3fbf` | KuCoin 3 | Avalanche, Ethereum, World Chain |
+| `0xd6216fc19db775df9774a6e33526131da7d19a2c` | KuCoin 3 / KuCoin 6 | Avalanche, Ethereum, Optimism, World Chain |
+| `0x4ad64983349c49defe8d7a4686202d24b25d0ce8` | KuCoin 4 | Avalanche, Ethereum, World Chain |
+| `0x1692e170361cefd1eb7240ec13d048fd9af6d667` | KuCoin 5 | Avalanche, Ethereum, World Chain |
+| `0xe59cd29be3be4461d79c0881d238cbe87d64595a` | KuCoin 7 / Kucoin 7 | Avalanche, Ethereum, World Chain |
+| `0x899b5d52671830f567bf43a14684eb14e1f945fe` | KuCoin 8 | Avalanche, Ethereum, World Chain |
+| `0xf16e9b0d03470827a95cdfd0cb8a8a3b46969b91` | KuCoin 9 | Avalanche, Ethereum, World Chain |
+| `0xcad621da75a66c7a8f4ff86d30a2bf981bfc8fdd` | KuCoin 10 | Avalanche, Ethereum, World Chain |
+| `0xec30d02f10353f8efc9601371f56e808751f396f` | KuCoin 11 | Avalanche, Ethereum, World Chain |
+| `0x738cf6903e6c4e699d1c2dd9ab8b67fcdb3121ea` | KuCoin 12 | Avalanche, Ethereum, World Chain |
+| `0xd89350284c7732163765b23338f2ff27449e0bf5` | KuCoin 13 | Avalanche, Ethereum, World Chain |
+| `0x88bd4d3e2997371bceefe8d9386c6b5b4de60346` | KuCoin 14 | Avalanche, Ethereum, World Chain |
+| `0xb8e6d31e7b212b2b7250ee9c26c56cebbfbe6b23` | KuCoin 15 | Avalanche, Ethereum, World Chain |
+| `0x41e29c02713929f800419abe5770faa8a5b4dadc` | KuCoin 16 | Avalanche, Ethereum, World Chain |
+| `0x45300136662dd4e58fc0df61e6290dffd992b785` | KuCoin 17 | Avalanche, Ethereum, World Chain |
+| `0x83c41363cbee0081dab75cb841fa24f3db46627e` | KuCoin 18 | Avalanche, Ethereum, World Chain |
+| `0x7491f26a0fcb459111b3a1db2fbfc4035d096933` | KuCoin 19 | Avalanche, Ethereum, World Chain |
+| `0x58edf78281334335effa23101bbe3371b6a36a51` | KuCoin 20 | Avalanche, Ethereum, World Chain |
+| `0xf97deb1c0bb4536ff16617d29e5f4b340fe231df` | KuCoin 21 | Avalanche, Ethereum, World Chain |
+| `0xa152f8bb749c55e9943a3a0a3111d18ee2b3f94e` | KuCoin 22 | Avalanche, Ethereum, World Chain |
+| `0xe66845fd840fc7e489bcb61241fff5b7fc5f1f0e` | KuCoin 23 | Avalanche, World Chain |
+| `0xf3f094484ec6901ffc9681bcb808b96bafd0b8a8` | KuCoin 25 / KuCoin 3 | Arbitrum, Avalanche, World Chain |
+| `0xa3f45e619ce3aae2fa5f8244439a66b203b78bcc` | KuCoin 26 | Avalanche, World Chain |
+| `0x635308e731a878741bfec299e67f5fd28c7553d9` | KuCoin 28 | Avalanche, World Chain |
+| `0x9ac5637d295fea4f51e086c329d791cc157b1c84` | KuCoin 29 | Avalanche, World Chain |
+| `0xfb6a733bf7ec9ce047c1c5199f18401052eb062d` | KuCoin 30 | Avalanche, World Chain |
+| `0xb9f79fc4b7a2f5fb33493ab5d018db811c9c2f02` | KuCoin 31 | Avalanche, World Chain |
+| `0x4e75e27e5aa74f0c7a9d4897dc10ef651f3a3995` | KuCoin 32 | Avalanche, World Chain |
+| `0x441454b3d857fe365b7defe8cb3e4f498ec91eac` | KuCoin 33 | Avalanche, World Chain |
+| `0x77f59b595cac829575e262b4c8bbcb17abadb33a` | KuCoin 34 | Avalanche, World Chain |
+| `0x14ea40648fc8c1781d19363f5b9cc9a877ac2469` | KuCoin 35 | Avalanche, World Chain |
+| `0xa649ffc455ac7c5acc1bc35726fce54e25eb59f9` | KuCoin 36 | Avalanche, World Chain |
+| `0xf8da05c625a6e601281110cba52b156e714e1dc2` | KuCoin 37 | Avalanche, World Chain |
+| `0x446b86a33e2a438f569b15855189e3da28d027ba` | KuCoin 38 | Avalanche, World Chain |
+| `0xaa99fc695eb1bbfb359fbad718c7c6dafc03a839` | KuCoin 39 | Avalanche, World Chain |
+| `0x17a30350771d02409046a683b18fe1c13ccfc4a8` | KuCoin 40 | Avalanche, World Chain |
+| `0x2a8c8b09bd77c13980495a959b26c1305166a57f` | KuCoin 41 | Avalanche, World Chain |
+| `0x1dd9319a115d36bd0f71c276844f67171678e17b` | KuCoin 42 | Avalanche, World Chain |
+| `0xf8ba3ec49212ca45325a2335a8ab1279770df6c0` | KuCoin 43 | Avalanche, World Chain |
+| `0x3ad7d43702bc2177cc9ec655b6ee724136891ef4` | KuCoin 44 | Avalanche, World Chain |
+| `0xce0b6bfd578a5e90fb827ce6f86aa06355277f8c` | KuCoin 55 | Avalanche, World Chain |
+| `0x4cf8800ccc0a56396f77b1e7c46160f5df0e09a5` | KuCoin 56 | Avalanche, World Chain |
+| `0x18b0f4547a89fe4c5fe84f258bea3601fa281e9f` | KuCoin 57 | Avalanche, World Chain |
+| `0x33a28d7a0c94599edb670fcce5dfa9d4c072314e` | KuCoin 58 | Avalanche, World Chain |
+| `0x2d964ee844c35a72c6a9d498d54c8a9910cf6914` | KuCoin 59 | Avalanche, World Chain |
+| `0xe58c8d45477d894bb9a1501bb0d0a32af8419eda` | KuCoin 60 | Avalanche, World Chain |
+| `0xcded3bb9d2dc98f6e4e772095b48051acfb84df9` | KuCoin 61 | Avalanche, World Chain |
+| `0x22dc53fc2ed383e4bf849b1054f1b86c127fde3e` | KuCoin 62 | Avalanche, World Chain |
+| `0xf9ed457b149ad27fe2ad2eb734482a425fd6faae` | KuCoin 63 | Avalanche, World Chain |
+| `0x58a1c909c5ec6cbf9c1df9ab3e9e2301ff707b6b` | KuCoin 64 | Avalanche, World Chain |
+| `0xdd276dc5223d0120f9bf1776f38957cc8da23cb0` | KuCoin 65 | Avalanche, World Chain |
+| `0xe8c15aad9d4cd3f59c9dfa18828b91a8b2c49596` | KuCoin 66 | Avalanche, World Chain |
+| `0xb514c67824443868d3a70352398f524ef6af6207` | KuCoin 67 | Avalanche, World Chain |
+| `0x189b24f3eb15dc71b4fc57c5914e7e9b3246e449` | KuCoin 68 | Avalanche, World Chain |
+
+## Bitget
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0xe6a421f24d330967a3af2f4cdb5c34067e7e4d75` | Bitget: Hot Wallet 1 | Avalanche, Ethereum, World Chain |
+| `0xe2b406ec9227143a8830229eeb3eb6e24b5c60be` | Bitget: Hot Wallet 2 | Avalanche, Ethereum, World Chain |
+| `0xf646d9b7d20babe204a89235774248ba18086dae` | Bitget: Hot Wallet 3 | Avalanche, Ethereum, World Chain |
+| `0x149ded7438caf5e5bfdc507a6c25436214d445e1` | Bitget: Hot Wallet 4 | Avalanche, Ethereum, World Chain |
+| `0xe80623a9d41f2f05780d9cd9cea0f797fd53062a` | Bitget 1 | Avalanche, Ethereum, World Chain |
+| `0x51971c86b04516062c1e708cdc048cb04fbe959f` | Bitget 2 | Avalanche, Ethereum, World Chain |
+| `0x97b9d2102a9a65a26e1ee82d59e42d1b73b68689` | Bitget 3 | Avalanche, Ethereum, World Chain |
+| `0x0639556f03714a74a5feeaf5736a4a64ff70d206` | Bitget 4 | Avalanche, Ethereum, World Chain |
+| `0x5bdf85216ec1e38d6458c870992a69e38e03f7ef` | Bitget 5 | Avalanche, Ethereum, World Chain |
+| `0x1ab4973a48dc892cd9971ece8e01dcc7688f8f23` | Bitget 6 | Avalanche, Ethereum, World Chain |
+| `0x1ae3739e17d8500f2b2d80086ed092596a116e0b` | Bitget 7 | Avalanche, Ethereum, World Chain |
+| `0x2bf7494111a59bd51f731dcd4873d7d71f8feeec` | Bitget 8 | Avalanche, Ethereum, World Chain |
+| `0x31a36512d4903635b7dd6828a934c3915a5809be` | Bitget 9 | Avalanche, Ethereum, World Chain |
+| `0x461f6dcdd5be42d41fe71611154279d87c06b406` | Bitget 10 | Avalanche, Ethereum, World Chain |
+| `0x9e00816f61a709fa124d36664cd7b6f14c13ee05` | Bitget 11 | Avalanche, Ethereum, World Chain |
+| `0xdfe4b89cf009bffa33d9bca1f19694fc2d4d943d` | Bitget 12 | Avalanche, Ethereum, World Chain |
+| `0x842ea89f73add9e4fe963ae7929fdc1e80acdb52` | Bitget 13 | Avalanche, Ethereum, World Chain |
+| `0x5051e9860c1889eb1bfa394365364b3dd61787f1` | Bitget 14 | Avalanche, Ethereum, World Chain |
+| `0x4dfc15890972ecea7a213bda2b478dabc382e7a1` | Bitget 15 | Avalanche, Ethereum, World Chain |
+| `0x1a96e5da1315efcf9b75100f5757d5e8b76abb0c` | Bitget 16 | Avalanche, Ethereum, World Chain |
+| `0xbc942e2250ec7ab83bfc4516bca4e281dbfbb393` | Bitget 17 | Avalanche, Ethereum, World Chain |
+| `0x731309e453972598ea05d706c6ee6c3c21ab4d2a` | Bitget 18 | Avalanche, Ethereum, World Chain |
+| `0x1d5ba5414f2983212e03bf7725add9eb4cdb00dc` | Bitget 19 | Avalanche, Ethereum, World Chain |
+| `0xb8cda8d72da558ef8f76a0d928f9652d2b003e2e` | Bitget 20 | Avalanche, Ethereum, World Chain |
+| `0x7651fc1605a58fe9a99f1fe0d6db05d4182a9a93` | Bitget 21 | Avalanche, Ethereum, World Chain |
+| `0x6a3f28c47542bd5811ae37ab358d5d7e3ab84127` | Bitget 22 | Avalanche, Ethereum, World Chain |
+| `0x59708733fbbf64378d9293ec56b977c011a08fd2` | Bitget 23 | Avalanche, Ethereum, World Chain |
+| `0xbff5092f83bd810e0926068b89633bf66eaa037b` | Bitget 27 | Avalanche, World Chain |
+| `0x092fe28430bade62c7c044b9c77d0aaa06241319` | Bitget 28 | Avalanche, World Chain |
+| `0xdbe46a02322e636b92296954637e1d7db9d5ed26` | Bitget 29 | Avalanche, World Chain |
+| `0x70213959a644baa94840bbfb4129550bceceb3c2` | Bitget 30 | Avalanche, World Chain |
+| `0x4d216d2682f3997f6c19420beee4530d08d0ea5f` | Bitget 31 | Avalanche, World Chain |
+| `0x0edd5b0de0fe748be331186bf0aa878f47f601db` | Bitget 32 | Avalanche, World Chain |
+| `0x54a679e853281a440911f72eae0e24107e9413dc` | Bitget 33 | Avalanche, World Chain |
+| `0xffa8db7b38579e6a2d14f9b347a9ace4d044cd54` | Bitget 35 | Avalanche, World Chain |
+
+## Crypto.com
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0x6262998ced04146fa42253a5c0af90ca02dfd2a3` | Crypto.com 1 | Avalanche, World Chain |
+| `0x20fa1822a87d4e7a3ccf20f86e716ef3772ecff1` | Crypto.com 2 | Avalanche, World Chain |
+| `0xd3d877fc323de661ff9e1a38147a1ac679ce7c64` | Crypto.com 3 | Avalanche, World Chain |
+| `0x7758e507850da48cd47df1fb5f875c23e3340c50` | Crypto.com 4 | Ethereum |
+| `0x1714400ff23db4af24f9fd64e7039e6597f18c2b` | Crypto.com 4 | Avalanche, World Chain |
+| `0x625b02b687ec38f3085af5b108dda410775fa76a` | Crypto.com 5 | Avalanche, World Chain |
+| `0xfa0b641678f5115ad8a8de5752016bd1359681b9` | Crypto.com 6 | Avalanche, World Chain |
+| `0x7aad7840f119f3876ee3569e488c7c4135f695fa` | Crypto.com 7 | Avalanche, World Chain |
+| `0x92bd687953da50855aee2df0cff282cc2d5f226b` | Crypto.com 8 | Avalanche, World Chain |
+| `0x187b2d576ba7ec2141c180a96edd0f202492f36b` | Crypto.com 9 | Avalanche, World Chain |
+| `0x9a552417cfc942a5c88ab474756d3d9962f917c0` | Crypto.com 10 | Avalanche, World Chain |
+| `0x8a161a996617f130d0f37478483afc8c1914db6d` | Crypto.com 11 | Avalanche, World Chain |
+| `0x46340b20830761efd32832a74d7169b29feb9758` | Crypto.com 12 / Crypto.com 2 | Avalanche, Ethereum, World Chain |
+| `0x2c2301fdb0bfa06eaabaa0122cbceb2265337c25` | Crypto.com 13 | Avalanche, World Chain |
+| `0x72a53cdbbcc1b9efa39c834a540550e23463aacb` | Crypto.com 14 / Crypto.com 3 | Avalanche, Ethereum, World Chain |
+| `0xcffad3200574698b78f32232aa9d63eabd290703` | Crypto.com 16 / Crypto.com 5 | Avalanche, Ethereum, World Chain |
+| `0xf3b0073e3a7f747c7a38b36b805247b222c302a3` | Crypto.com 17 / Crypto.com 6 | Avalanche, Ethereum, World Chain |
+| `0x9fb538820d4fde2fcc509dc01ae73a192f36cfcc` | Crypto.com 18 | Avalanche, World Chain |
+| `0x0ecc16d3fa38e1a59c10e44cda4e2e9d9941275a` | Crypto.com 19 | Avalanche, World Chain |
+| `0xd7a827fbaf38c98e8336c5658e4bcbcd20a4fd2d` | Crypto.com 20 | Avalanche, World Chain |
+| `0x5b71d5fd6bb118665582dd87922bf3b9de6c75f9` | Crypto.com 21 | Avalanche, World Chain |
+| `0xa023f08c70a23abc7edfc5b6b5e171d78dfc947e` | Crypto.com 22 | Avalanche, World Chain |
+| `0xce2cc46682e9c6d5f174af598fb4931a9c0be68e` | Crypto.com 24 | Avalanche, World Chain |
+| `0xb428523cdda53640a62e9f26c2d8613a9159b282` | Crypto.com 25 | Avalanche, World Chain |
+| `0x17e49502febdf7b3bd3a9842a325036d729b7654` | Crypto.com 26 | Avalanche, World Chain |
+| `0x8bc87020028a07e5ed17824b4fe0e2afcd823b2e` | Crypto.com 27 | Avalanche, World Chain |
+| `0xcbf25a7c3f305ce9d0747b933ea314568abee40b` | Crypto.com 28 | Avalanche, World Chain |
+| `0x09fa1f3461152d243ca1e5c59d0e228caaf1f2b8` | Crypto.com 29 | Avalanche, World Chain |
+| `0xf8422385032dcded2e8af849058ae32543a3665e` | Crypto.com 30 | Avalanche, World Chain |
+| `0x4c9df57276dc17dee5635ded208c07b0be32afd0` | Crypto.com 31 | Avalanche, World Chain |
+| `0xc043fb6cb57acd89635d54802c2f8a95daf210e8` | Crypto.com 32 | Avalanche, World Chain |
+| `0x42ed232dc3e65b3534dbb42d07a3f67a618f66a3` | Crypto.com 33 | Avalanche, World Chain |
+| `0xb7333d779c6ecdfc4507a53706b0e173bd086a18` | Crypto.com 34 | Avalanche, World Chain |
+| `0x589abd0cdcd897240f311f1eff8635271f6c605b` | Crypto.com 35 | Avalanche, World Chain |
+| `0xd3e0341b361134014e0c89378b3e36bc5020cd97` | Crypto.com 36 | Avalanche, World Chain |
+| `0xa8936fee3c966060849d14b6f8e71fb2c73213b3` | Crypto.com 37 | Avalanche, World Chain |
+| `0x24eb3a39856723138796c5068a17ba4fb15cd25e` | Crypto.com 38 | Avalanche, World Chain |
+| `0x2d17db18b41c92e64abaefb7e35ed70ed45b6dc8` | Crypto.com 39 | Avalanche, World Chain |
+| `0x0a80992f815973ad7e7a9c340760fed41d96c450` | Crypto.com 40 | Avalanche, World Chain |
+| `0x380245ed307035956956fc56363c9ee416cab5d7` | Crypto.com 41 | Avalanche, World Chain |
+| `0x2b0b6cbbe52f7e14b0d013bc3137f169643ee657` | Crypto.com 42 | Avalanche, World Chain |
+| `0x4616b5e775cd239af56a5ea87eefc1251b7f077c` | Crypto.com 43 | Avalanche, World Chain |
+| `0x095fc6bc0f901e64ba8170819bb126ef2f9590cb` | Crypto.com 44 | Avalanche, World Chain |
+| `0xf2e592f68e726cdd52a183659f49a407449b4c7e` | Crypto.com 45 | Avalanche, World Chain |
+| `0x4a8b9fcfba0bf99f02f621584017ab92a41320a9` | Crypto.com 46 | Avalanche, World Chain |
+| `0xc2de4f542c2e2349ee050541f5ad25aa4be1a00f` | Crypto.com 47 | Avalanche, World Chain |
+| `0x7c0046b931716952409367fdd57692458734a948` | Crypto.com 48 | Avalanche, World Chain |
+| `0xe91f5d52740cd197f37f17de20b045f051b2b2dc` | Crypto.com 49 | Avalanche, World Chain |
+| `0x970f522efe96b5cd2375737483c87c18271eefa2` | Crypto.com 50 | Avalanche, World Chain |
+| `0xc4153b9b781789e899dee4e8b0d1784a81df3cc4` | Crypto.com 51 | Avalanche, World Chain |
+| `0xb4a40a03ab90401525a7418bf443157c866ff8a5` | Crypto.com 52 | Avalanche, World Chain |
+| `0xdde01ceb2ded3bc2e86205da3474d1f39266b20b` | Crypto.com 53 | Avalanche, World Chain |
+| `0x678f52fbc7f61c1b29b7717efb107d480d0de3bc` | Crypto.com 54 | Avalanche, World Chain |
+| `0x0ccd677659c05d51284b4bfa3bfcfa4a044b9ee2` | Crypto.com 55 | Avalanche, World Chain |
+| `0xa08dc89a82904d1ec42c7f4d5fcfbdd7507e39bb` | Crypto.com 56 | Avalanche, World Chain |
+| `0xadc0def7f7c3101decd1d7aeb675db6fb5d60ed3` | Crypto.com 57 | Avalanche, World Chain |
+
+## Nexo
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0x00ee047a66d5cff27587a61559138c26b62f7ceb` | Nexo 1 | Avalanche, World Chain |
+| `0xffec0067f5a79cff07527f63d83dd5462ccf8ba4` | Nexo 2 | Avalanche, Ethereum, World Chain |
+| `0x0031e147a79c45f24319dc02ca860cb6142fcba1` | Nexo 3 | Avalanche, Ethereum, World Chain |
+| `0x7344e478574acbe6dac9de1077430139e17eec3d` | Nexo 4 | Avalanche, Ethereum, World Chain |
+| `0x71cc55c2edeb275a43b7e62581ee2c0af9211883` | Nexo 5 | Ethereum |
+| `0xe4ea1914ec4b6e4e97fe13e55b2f1f09641ff28d` | Nexo 6 | Ethereum |
+| `0x1ebe4f89c487763653a61fba55cb618ae536db2b` | Nexo 7 | Ethereum |
+| `0x585b0594f2eeef676d9042ab617825f551ef3427` | Nexo 8 | Ethereum |
+| `0x77ae0e40df7af92620252e594dc449f85e77e989` | Nexo 9 | Ethereum |
+| `0xc77d79f8802ba8042929cb1360945bb8c85770b9` | Nexo 10 | Ethereum |
+| `0x3d33de9c574eeb5d55caf200497427e3b7fbc610` | Nexo 11 | Ethereum |
+| `0xc8c960a01ac67c5e1424f7d5afb08a625aff9076` | Nexo 12 | Ethereum |
+| `0x03baf90b77df8fec05ba9a59f26d0e0d021f75b7` | Nexo 13 | Ethereum |
+| `0x9a8ed6d235ceb6dc699eebc999ae9227818bb627` | Nexo 14 | Ethereum |
+| `0x0e2219356c85fb147de82ce0fd639d807f612880` | Nexo 15 | Ethereum |
+| `0x613ee7f8f0a63c69118d49b152f4ee473fe61f9e` | Nexo 16 | Ethereum |
+| `0x763bcb64aef96b50b048fa10f9a7b77fb4c562c5` | Nexo 17 | Ethereum |
+| `0xbe9c7c5408929b5812d24ed1f91af6e7a2f6265b` | Nexo 18 | Ethereum |
+| `0x5aacc0eb650a2abef5096352c67ac918c68836e9` | Nexo 19 | Ethereum |
+| `0x808993bb7e23c5d190b8daaa6745a3854ef3a12c` | Nexo 20 | Ethereum |
+| `0x0f242d43be94b7eaed66468515e9b8867bbb13f0` | Nexo 21 | Ethereum |
+| `0x4fee0e3ff8618f9827f9f3be115bd4ea1f588247` | Nexo 22 | Ethereum |
+| `0x60f8adc885d2689f14a9308ff19097e276b95f69` | Nexo 23 | Ethereum |
+| `0x0bbc2a3882fdcc92ff2c38fde2f840ed0570dbcd` | Nexo 24 | Ethereum |
+| `0x96bd79bb1b74f291258c2c5162fea25bc7862721` | Nexo 25 | Ethereum |
+| `0x510cf3f6fdd625c0f50fa9ef3214d6a12808994a` | Nexo 26 | Ethereum |
+| `0x371f6bd1668dd95bd2c313073cc119acb94365c0` | Nexo 27 | Ethereum |
+| `0xb2ad9b448539acb26e6b822ccdde3092cca74ba5` | Nexo 28 | Ethereum |
+| `0xfe2b63e34de4bec9128acb27fc034f30175d5c6e` | Nexo 29 | Ethereum |
+| `0x08d0da0328c20141b9fa440f3c3f1d3a4aaf1cdf` | Nexo 30 | Ethereum |
+| `0x2b12fa3811d3dee188b2c01e2f4c4c452ffaede7` | Nexo 31 | Ethereum |
+| `0x85735f50f059326abc6c0bd58a6b69ce9440f26f` | Nexo 32 | Ethereum |
+| `0x657d13024b41214c790ef6b1fb7a6babfdd7788a` | Nexo 33 | Ethereum |
+| `0x96508574db3c2c601c4fbfbc49f4bdf4c3790710` | Nexo 34 | Ethereum |
+| `0xb8763cea17f295e483e4e9bd7e72e6c01b2e7347` | Nexo 35 | Ethereum |
+| `0x50691b24329bdbb3862d08aebbdeacf928c5696e` | Nexo 36 | Ethereum |
+| `0x34294a4829a0e4dd30cf615b82dbbbe95bd30d3d` | Nexo 37 | Ethereum |
+| `0xb1715dd4530752f91a3254097136cad8341eef6e` | Nexo 38 | Ethereum |
+| `0xa82cc0735a3d4ff4941036c54d653d3146a5fd92` | Nexo 39 | Ethereum |
+| `0xf9db04c83c7821872c63d6f1f942bd30f15e3d4e` | Nexo 40 | Ethereum |
+| `0x5e1e3aa1ced3967f6ce6816c8479fb7b380822bd` | Nexo 41 | Ethereum |
+| `0x30f515caf650cf55bc1ca0f6e20f2b840f68f281` | Nexo 42 | Ethereum |
+| `0x7d8dcdb3f11ea9a118d12fe891ac47d59eb4be63` | Nexo 43 | Ethereum |
+| `0x388dbd0f52dd8482c5e3197bfc54794f1f9005c0` | Nexo 44 | Ethereum |
+| `0x976cebef542b7bf2c4729a58988340b1e2a5adbe` | Nexo 45 | Ethereum |
+| `0xe7c49eb93e7bccb834f5a56df6cd7083e861bfd5` | Nexo 46 | Ethereum |
+| `0xc03012e42f44385d393f68a464565e6934cf9026` | Nexo 47 | Ethereum |
+| `0x4d7f1790644af787933c9ff0e2cff9a9b4299abb` | Nexo 48 | Avalanche, Ethereum, World Chain |
+| `0x7ab6c736baf1dac266aab43884d82974a9adcccf` | Nexo 49 | Avalanche, World Chain |
+| `0xe498e7a77a2ffbd33e4a14253c3d11f97aeba18b` | Nexo 50 | Avalanche, World Chain |
+| `0x31e9b3373f2ad5d964cad0fd01332d6550cbbde6` | Nexo 51 | Avalanche, Ethereum, World Chain |
+| `0x463e5b673d1029989c9b059d36393c539bef9094` | Nexo 52 | Avalanche, Ethereum, World Chain |
+| `0x4bb7f4c3d47c4b431cb0658f44287d52006fb506` | Nexo 53 | Avalanche, World Chain |
+| `0x57793e249825492212de2aa4306379017301e1da` | Nexo 54 | Avalanche, World Chain |
+| `0xb60c61dbb7456f024f9338c739b02be68e3f545c` | Nexo 55 | Avalanche, World Chain |
+| `0x1d85f929ee6aedc3b4981d8fe408ae43942b2e53` | Nexo 56 | Avalanche, World Chain |
+| `0x121effb8160f7206444f5a57d13c7a4424a237a4` | Nexo 57 | Avalanche, World Chain |
+| `0x8fd589aa8bfa402156a6d1ad323fec0ecee50d9d` | Nexo 58 | Avalanche, World Chain |
+| `0xa75ede99f376dd47f3993bc77037f61b5737c6ea` | Nexo 59 | Avalanche, World Chain |
+| `0xba90b5bc12daab8d06582967a22c86ae7eed0469` | Nexo 60 | Avalanche, World Chain |
+| `0xf36a47300f002c0c9f8c131962f077c3543b2fc6` | Nexo 61 | Avalanche, World Chain |
+| `0x55e4d16f9c3041eff17ca32850662f3e9dddbce7` | Nexo 62 | Avalanche, World Chain |
+| `0x6914fc70fac4cab20a8922e900c4ba57feecf8e1` | Nexo 63 | Avalanche, World Chain |
+| `0x5b579b11881fb50f4ef2f0ecb0f7ce164a866ca0` | Nexo 75 | Avalanche, World Chain |
+| `0x7893b8b1a474933ef654596e138298eba2000237` | Nexo 76 | Avalanche, World Chain |
+| `0x4b2cf5c94a88934870b523983b22e6d2dd1b6577` | Nexo 77 | Avalanche, World Chain |
+
+## ChangeNOW
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0x975d9bd9928f398c7e01f6ba236816fa558cd94b` | ChangeNOW: Hot Wallet 1 | Avalanche, Ethereum, World Chain |
+| `0xa96be652a08d9905f15b7fbe2255708709becd09` | ChangeNOW: Hot Wallet 2 | Avalanche, Ethereum, World Chain |
+| `0xd5b73fc035d4d679234323e0d891cab4a4f5a1ab` | ChangeNOW 3 | Avalanche, World Chain |
+| `0x0a1ce4496471867fac0ad71b785e5258993c9b33` | ChangeNOW 4 | Avalanche, World Chain |
+| `0xbe6439b25e2c6560590407731bb9fe2908f30c94` | ChangeNOW 5 | Avalanche, World Chain |
+| `0x3a0d24d59af3a3444dc6ef12cdb0c6e38c985288` | ChangeNOW 6 | Avalanche, Ethereum, World Chain |
+| `0xc275119660fefe4519083ea6e57cbd1b672bc020` | ChangeNOW 7 | Avalanche, World Chain |
+| `0x3421230289980b8ea81781b170ef7d475673102b` | ChangeNOW 8 | Avalanche, Ethereum, World Chain |
+| `0x9bc2f223026c252c8ef5f7f33f00f4bee21434b8` | ChangeNOW 9 | Avalanche, Ethereum, World Chain |
+| `0xa12e1462d0ced572f396f58b6e2d03894cd7c8a4` | ChangeNOW 10 | Avalanche, Ethereum, World Chain |
+| `0xbac051bbf79c5321c0f825ea9bca71f992144029` | ChangeNOW 11 | Avalanche, Ethereum, World Chain |
+| `0x7a3bea333246efcd74ebf5835987a5398eac10fe` | ChangeNOW 12 | Avalanche, World Chain |
+| `0x3525d3a883f743ca146288c146de7ccd59d48bf5` | ChangeNOW 13 | Avalanche, World Chain |
+| `0xa6ba490e1af9849b6220ab9f709a32f7a82afad6` | ChangeNOW 14 | Avalanche, World Chain |
+| `0xd98cfe4a2b9fce9b884d2ec3698e775ee54753af` | ChangeNOW 15 | Avalanche, World Chain |
+| `0xeba88149813bec1cccccfdb0dacefaaa5de94cb1` | ChangeNOW 16 | Avalanche, World Chain |
+| `0xd72cd83afba0dcfeff95d463adcb2b8def6aa623` | ChangeNOW 17 | Avalanche, World Chain |
+| `0xe2d60cfe3cf8b2079c7df0144c5b28c03469775c` | ChangeNOW 18 | Avalanche, World Chain |
+| `0xf78f74a0f9104aa62864b93802260c3469167a9a` | ChangeNOW 19 | Avalanche, World Chain |
+| `0x3c73868c9b9ba4d71dec73ff7798a980da996320` | ChangeNOW 20 | Avalanche, World Chain |
+| `0x59855c07cdd4924609df4f5f175da3188699932f` | ChangeNOW 21 | Avalanche, World Chain |
+| `0x4958f6c329b61404b1cfd0ec8a44600a9486bd0a` | ChangeNOW 22 | Avalanche, World Chain |
+
+## SimpleSwap
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0xbb3fd383d1c5540e52ef0a7bcb9433375793aeaf` | SimpleSwap 1 | Avalanche, World Chain |
+| `0x40bbfa70b338efd6e81d93ed0a25a2cb67bb7bb9` | SimpleSwap 2 | Avalanche, World Chain |
+| `0xafd99a1a7e2195a8e0fdb6e8bd45efdff15feadd` | SimpleSwap 3 | Avalanche, World Chain |
+| `0x09fe30d5b6e19b38f04a01a217519ceca15b5388` | SimpleSwap 4 | Avalanche, World Chain |
+| `0x32e9dc9968fab4c4528165cd37b613dd5d229650` | SimpleSwap 5 | Avalanche, World Chain |
+| `0xca604a3e8b6277492ebc558a4457b6e60e611096` | SimpleSwap 6 | Avalanche, World Chain |
+| `0x7bacd3e83522f484bc5128ea93bf7290f1f1b9e5` | SimpleSwap 7 | Avalanche, World Chain |
+| `0x1d05acf4e760b1e06c735b67818fdc91558df17d` | SimpleSwap 8 | Avalanche, World Chain |
+| `0x876470570c01806261a981d653c4a601cd6875c0` | SimpleSwap 9 | Avalanche, World Chain |
+
+## Remitano
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0xb8356a14e2610315f4d6604c71738c7f2ef7aa2a` | Remitano: Hot Wallet 1 | Avalanche, World Chain |
+| `0xb8cf411b956b3f9013c1d0ac8c909b086218207c` | Remitano 1 | Avalanche, Ethereum, World Chain |
+| `0x2819c144d5946404c0516b6f817a960db37d4929` | Remitano 2 | Avalanche, Ethereum, World Chain |
+| `0xfe80804d2e3ab78a13ce90f45b2803cf9bbd1f51` | Remitano 3 | Avalanche, World Chain |
+| `0x7ae17a0f6f8f02b5b6e76b327db15f91306194e6` | Remitano 4 | Avalanche, World Chain |
+| `0xb89dd647788c54a03ba290a6320ba53566afb57d` | Remitano 5 | Avalanche, World Chain |
+| `0xb7cabd1e6598209ec21a5a7ad72cc76b4ce4fc85` | Remitano 6 | Avalanche, World Chain |
+| `0xaa28552dedd0223d0ff59eaa389c2547f34081a0` | Remitano 7 | Avalanche, World Chain |
+| `0xef10a5d898c21aa95865b447be6491380859a307` | Remitano 8 | Avalanche, World Chain |
+| `0xe13467e36561606a821fb7ecd72bfce8f70648f9` | Remitano 9 | Avalanche, World Chain |
+| `0x87ad3f8573e96308eaef597dde8d9dcfb19202d2` | Remitano 10 | Avalanche, World Chain |
+| `0x6aa36553f97d5965566697bafcfda5d69a5bc6d7` | Remitano 11 | Avalanche, World Chain |
+| `0xcc83dc5a37d49de4562019560307ce724a975d5c` | Remitano 12 | Avalanche, World Chain |
+
+## Wirex
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0x2f13d388b85e0ecd32e7c3d7f36d1053354ef104` | Wirex 1 | Avalanche, World Chain |
+| `0xe3f277382419535245a345e923898c2d43f7cbe5` | Wirex 2 | Avalanche, World Chain |
+| `0x935f64b44b5c48a1539c4ada5161d27ace4205b5` | Wirex 3 | Avalanche, World Chain |
+| `0xb57deccd4b0aa811fe1ec947c66ee65c08617a76` | Wirex 4 | Avalanche, World Chain |
+| `0x4afdba85a0e24a0d3f3245c8d91f5a0e2914e3c3` | Wirex 5 | Avalanche, World Chain |
+| `0x0a1820f0ff7dc9fce0a4f0b589ee14ddae88233c` | Wirex 6 | Avalanche, World Chain |
+| `0x6c9bfec4babb1dc5ad112aa79003d9cf7261dbda` | Wirex 7 | Avalanche, World Chain |
+
+## Paxful
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0x17f1a51da68d27c94d2a51d92b27b5bd4718b986` | Paxful 1 | Avalanche, World Chain |
+| `0x7a20527ba5a749b3b054a821950bfcc2c01b959f` | Paxful 2 | Avalanche, World Chain |
+| `0x777d4627e31863b2a49e2985af46525f21a9846c` | Paxful 3 | Avalanche, World Chain |
+
+## BitPay
+
+| Address | Tag | Chains tagged |
+|---|---|---|
+| `0xf2a14015eaa3f9cc987f2c3b62fc93eee41aa5d0` | BitPay 1 | Avalanche, Ethereum, World Chain |
+| `0x2730ef3c0c180e7f7bcfca249c757421b208e333` | BitPay 2 | Avalanche, Ethereum, World Chain |
+| `0x5763a2a8194e9bd0b8140abccb9171f005470324` | BitPay 3 | Avalanche, Ethereum, World Chain |
