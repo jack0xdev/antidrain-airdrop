@@ -57,13 +57,15 @@ def main():
     ap.add_argument("--chains", default="1", help="comma-separated chain ids, e.g. 1,56,8453")
     ap.add_argument("--days", type=int, default=30, help="active = sent within this many days")
     ap.add_argument("--platform", help="only check this platform")
+    ap.add_argument("--input", default="platform-withdrawal-addresses.csv",
+                    help="address list in research/ to check")
     args = ap.parse_args()
 
     apikey = os.environ.get("ETHERSCAN_API_KEY")
     if not apikey:
         raise SystemExit("Set ETHERSCAN_API_KEY")
 
-    rows = list(csv.DictReader(open(HERE / "platform-withdrawal-addresses.csv", newline="")))
+    rows = list(csv.DictReader(open(HERE / args.input, newline="")))
     if args.platform:
         rows = [r for r in rows if r["platform"].lower() == args.platform.lower()]
 

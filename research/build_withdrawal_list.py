@@ -125,6 +125,40 @@ def write_md(data, path, dataset_commit):
     Path(path).write_text("\n".join(lines))
 
 
+def is_hot(info):
+    return any("hot wallet" in t.lower() for t in info["tags"])
+
+
+def without_hot_tag(data):
+    return {name: {a: i for a, i in by_addr.items() if not is_hot(i)} for name, by_addr in data.items()}
+
+
+def write_no_hot_md(data, path, dataset_commit):
+    total = sum(len(v) for v in data.values())
+    lines = [
+        "# Platform addresses without a `Hot Wallet` tag — EVM",
+        "",
+        f"Source: [{SOURCE}]({SOURCE}), dataset commit `{dataset_commit}`.",
+        f"{total} addresses: everything in `platform-withdrawal-addresses.csv` except the ones tagged",
+        "`<Name>: Hot Wallet N`. Full list: `no-hot-tag-addresses.csv`.",
+        "",
+        "These are numbered exchange tags (e.g. `Binance 14`). The tag only says the exchange owns the address;",
+        "it can be a withdrawal sender, a cold wallet or a treasury. **Not verified as currently active** —",
+        "run `check_last_activity.py --input no-hot-tag-addresses.csv` to see which ones still send.",
+        "",
+        "| Platform | Addresses |",
+        "|---|---|",
+    ]
+    lines += [f"| {name} | {len(by_addr)} |" for name, by_addr in data.items()]
+    lines.append("")
+    for name, by_addr in data.items():
+        lines += [f"## {name}", "", "| Address | Tag | Chains tagged |", "|---|---|---|"]
+        for addr, info in sorted(by_addr.items(), key=tag_sort_key):
+            lines.append(f"| `{addr}` | {' / '.join(sorted(info['tags']))} | {', '.join(sorted(info['chains']))} |")
+        lines.append("")
+    Path(path).write_text("\n".join(lines))
+
+
 if __name__ == "__main__":
     accounts_csv = sys.argv[1]
     commit = sys.argv[2] if len(sys.argv) > 2 else "unknown"
@@ -132,4 +166,7 @@ if __name__ == "__main__":
     data = collect(accounts_csv)
     write_csv(data, here / "platform-withdrawal-addresses.csv")
     write_md(data, here / "platform-withdrawal-addresses.md", commit)
+    no_hot = without_hot_tag(data)
+    write_csv(no_hot, here / "no-hot-tag-addresses.csv")
+    write_no_hot_md(no_hot, here / "no-hot-tag-addresses.md", commit)
     print({k: len(v) for k, v in data.items()})
