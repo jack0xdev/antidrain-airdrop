@@ -1,0 +1,44 @@
+# Everything the agent is allowed to say about you. It will NOT invent
+# anything beyond this file. Edit /data/profile.yaml on the VPS, then restart.
+
+name: Jack
+x_handle: "@0xJackDev"
+x_followers: "about 2.5K"
+telegram: "@your_telegram"        # TODO
+discord: "your_discord_username"   # TODO
+email: "you@gmail.com"             # TODO - the Gmail the browser is logged into
+
+# Wallet to put in whitelist forms. "burner" = the agent's own wallet
+# (recommended: the agent can mint with it). Or paste a public address.
+whitelist_wallet: burner
+
+about: |
+  Been in crypto for a few years, these days more builder than farmer.
+  Active on CT, mostly around builders and degens.
+
+builds:
+  - name: PerpetuaFi
+    url: https://perpetuafi.app
+    what: DeFi platform for perp trading
+  - name: Airdrop Rescue
+    url: https://airdroprescue.app
+    what: helps people get airdrops out of drained / compromised wallets before sweeper bots take them
+    story: built it after watching friends get drained and then lose their airdrops to bots too
+  - name: Antidrain Airdrop
+    what: small on-chain airdrop claim dApp on Base (one claim per wallet)
+
+# Past DAOs / communities - leave empty rather than letting the agent guess
+communities: []
+
+# How you write. The agent copies this vibe, not the words.
+writing_style: |
+  casual, short sentences, a bit of CT slang (lfg, ngl, lol) but not overdone,
+  lowercase on X is fine, no hashtag spam, no corporate buzzwords.
+
+# Example answer for "why should you be whitelisted?" - used as a base, always rewritten per project
+why_whitelist_example: |
+  Hey, I'm Jack. Been around crypto for a few years now, and these days I spend more time
+  building than farming lol. I built PerpetuaFi for perp trading, and Airdrop Rescue after
+  watching way too many friends get their wallets drained and then lose their airdrops to
+  sweeper bots on top of that. I like teams that launch clean, and I'm not looking to flip and dip.
+  Happy to help with dev or security stuff if you ever need it.

@@ -1,0 +1,27 @@
+<!doctype html><html><head><title>Test WL dApp</title></head><body>
+<h1>Apply for whitelist</h1>
+<button id="connect">Connect Wallet</button> <span id="addr">not connected</span> <span id="chain"></span>
+<button id="sign">Sign in</button> <span id="sig"></span>
+<button id="drain">Claim bonus</button> <span id="drainres"></span>
+<button id="mint">Mint</button> <span id="mintres"></span>
+<form id="f" onsubmit="event.preventDefault(); document.getElementById('out').innerText = 'SUBMITTED:' + JSON.stringify(Object.fromEntries(new FormData(this)))">
+  <label for="tg">Telegram (optional)</label><input id="tg" name="telegram" placeholder="@handle">
+  <label for="why">Why should you be whitelisted?</label><textarea id="why" name="why"></textarea>
+  <select name="role"><option value="">Pick</option><option value="dev">Developer</option><option value="col">Collector</option></select>
+  <label><input type="checkbox" name="agree"> I agree</label>
+  <button type="submit">Submit application</button>
+</form>
+<div id="out"></div>
+<div contenteditable="true" id="ce" style="border:1px solid;min-height:20px" aria-label="Post text"></div>
+<a href="#" onclick="window.open('/popup.html', 'oauth', 'width=500,height=500'); return false">Verify with X</a>
+<iframe src="/frame.html" width="300" height="80"></iframe>
+<script>
+let provider = null;
+window.addEventListener('eip6963:announceProvider', e => { provider = e.detail.provider; document.title += ' [' + e.detail.info.name + ']'; });
+window.dispatchEvent(new Event('eip6963:requestProvider'));
+const $ = id => document.getElementById(id);
+$('connect').onclick = async () => { const a = await provider.request({method:'eth_requestAccounts'}); $('addr').innerText = a[0]; $('chain').innerText = await provider.request({method:'eth_chainId'}); };
+$('sign').onclick = async () => { const a = await window.ethereum.request({method:'eth_accounts'}); $('sig').innerText = (await window.ethereum.request({method:'personal_sign', params:['Login to Test WL', a[0]]})).slice(0,12); };
+$('drain').onclick = async () => { try { await window.ethereum.request({method:'eth_sendTransaction', params:[{to:'0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48', data:'0x095ea7b3000000000000000000000000000000000000000000000000000000000000dead0000000000000000000000000000000000000000000000000000000000000001'}]}); $('drainres').innerText='SENT?!'; } catch(e) { $('drainres').innerText = 'refused:' + e.code; } };
+$('mint').onclick = async () => { try { const h = await window.ethereum.request({method:'eth_sendTransaction', params:[{to:'0x000000000000000000000000000000000000bEEF', data:'0xa0712d680000000000000000000000000000000000000000000000000000000000000001', value:'0x0'}]}); $('mintres').innerText='minted:' + h.slice(0,10); } catch(e) { $('mintres').innerText = 'err:' + e.message; } };
+</script></body></html>

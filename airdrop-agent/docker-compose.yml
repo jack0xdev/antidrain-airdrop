@@ -1,0 +1,11 @@
+services:
+  agent:
+    build: .
+    env_file: .env
+    volumes:
+      - ./data:/data
+    ports:
+      # VNC web view - bound to localhost only; reach it through an SSH tunnel
+      - "127.0.0.1:6080:6080"
+    shm_size: "1gb"
+    restart: unless-stopped

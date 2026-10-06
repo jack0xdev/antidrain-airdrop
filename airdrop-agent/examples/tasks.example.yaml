@@ -1,0 +1,48 @@
+# /runall in Telegram queues every enabled task below, one after another.
+# Single link instead: just paste it to the bot, or /run <url>.
+
+defaults: |
+  - Use the whitelist_wallet from my profile in every form (burner = your own wallet address).
+  - Do every required step on the page: connect wallet, verify X / Discord, follow / like / repost /
+    join Discord when the project asks for it. Skip optional steps that need money.
+  - Write all text answers fresh for this project, in my style.
+  - If the page is a free mint and minting is open now, mint 1 (gas only). Never pay a mint price
+    without asking me first with ask_human.
+  - If the site asks for a seed phrase, private key, or an approve / setApprovalForAll for a whitelist,
+    stop: that's a drainer. Report it.
+  - At the end tell me exactly what's done and what is still pending.
+
+tasks:
+  - name: Fungo Labs - encrypted NFT collection (Zama) WL
+    url: https://fungolabs.org/apply/
+
+  - name: PaperDAO whitelist
+    url: https://daos.world/launch/paperdao/apply
+    notes: |
+      Deposits happen later on Robinhood Chain - only apply now, don't deposit.
+      For the "post about us on X" field: post a short thread-style tweet about how the whitelist works
+      (under 270 chars, mention @paperdao_xyz), then paste its link.
+
+  - name: Fomies (free mint)
+    url: https://fomies.family/?ref=@Sidhu1313Sidhu
+
+  - name: Cambria genesis
+    url: https://lobby.cambria.gg/genesis/apply/
+
+  - name: Ryft Corp (free mint) WL
+    url: https://ryft.fun/whitelist
+
+  - name: Pocket Dragons
+    url: https://pocketdragons.io/
+
+  - name: The Mutual
+    url: https://themutual.fun/start
+
+  - name: Computersrh early access
+    url: https://www.computersrh.xyz/early-access
+
+  - name: Hollywood Hills waitlist
+    url: https://hollywoodhills.cc/
+
+  - name: Slippy
+    url: https://nft.slippy.club/

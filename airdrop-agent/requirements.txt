@@ -1,0 +1,6 @@
+anthropic>=1.11,<2
+playwright==1.63.0
+python-telegram-bot==22.8
+eth-account>=0.13
+httpx>=0.27
+PyYAML>=6
